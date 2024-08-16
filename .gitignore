@@ -4,7 +4,12 @@
 
 ## User settings
 xcuserdata/
-BankAppDemo/Resources/圖檔
+
+# 忽略 圖檔 目錄及其所有內容
+BankAppDemo/Resources/圖檔/
+
+# 確保 Info.plist 不被忽略
+!BankAppDemo/Resources/Info.plist
 
 ## Obj-C/Swift specific
 *.hmap

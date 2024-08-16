@@ -9,6 +9,9 @@ BankAppDemo/
 │   └── AppCoordinator.swift
 │
 ├── Coordinators/
+│   ├── Coordinator.swift
+│   ├── NavigationCoordinator.swift
+│   ├── TabCoordinator.swift
 │   ├── LoginCoordinator.swift
 │   └── HomeCoordinator.swift
 │

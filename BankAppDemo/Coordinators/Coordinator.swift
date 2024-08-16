@@ -1,8 +1,7 @@
 //
 //  Coordinator.swift
-//  BankAppDemo
 //
-//  Created by 程信傑 on 2024/8/16.
+//  Created by 程信傑 on 2023/2/18.
 //
 
 import Combine
@@ -12,67 +11,67 @@ import UIKit
 // MARK: - Coordinator
 
 class Coordinator: UIViewController {
-    var cancellables = Set<AnyCancellable>()
+	var cancellables = Set<AnyCancellable>()
 
-    // 使用者需要複寫底下兩個函式，用來處理資料訂閱，與元件顯示
-    func setupSubscriptions() {}
-    func start() { fatalError("Children should implement `start`.") }
+	// 使用者需要複寫底下兩個函式，用來處理資料訂閱，與元件顯示
+	func setupSubscriptions() {}
+	func start() { fatalError("Children should implement `start`.") }
 
-    // MARK: Lifecycle
+	// MARK: Lifecycle
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
+	init() {
+		super.init(nibName: nil, bundle: nil)
+	}
 
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+	@available(*, unavailable)
+	required init?(coder _: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
-    deinit {
-        removeSubscriptions()
-        print("\(className): 已被釋放")
-    }
+	deinit {
+		removeSubscriptions()
+		print("\(className): 已被釋放")
+	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupSubscriptions()
-        start()
-    }
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		setupSubscriptions()
+		start()
+	}
 
-    func add(childController: UIViewController) {
-        addChild(childController)
-        view.addSubview(childController.view)
-        childController.didMove(toParent: self)
-    }
+	func add(childController: UIViewController) {
+		addChild(childController)
+		view.addSubview(childController.view)
+		childController.didMove(toParent: self)
+	}
 
-    func remove(childController: UIViewController) {
-        childController.willMove(toParent: nil)
-        childController.view.removeFromSuperview()
-        childController.removeFromParent()
-    }
+	func remove(childController: UIViewController) {
+		childController.willMove(toParent: nil)
+		childController.view.removeFromSuperview()
+		childController.removeFromParent()
+	}
 
-    override func removeFromParent() {
-        super.removeFromParent()
-        guard isViewLoaded else { return }
-        print("\(className): 已從畫面被移除")
-    }
+	override func removeFromParent() {
+		super.removeFromParent()
+		guard isViewLoaded else { return }
+		print("\(className): 已從畫面被移除")
+	}
 
-    func removeSubscriptions() {
-        cancellables.removeAll()
-    }
+	func removeSubscriptions() {
+		cancellables.removeAll()
+	}
 }
 
 // MARK: - ClassNamePrintable
 
 protocol ClassNamePrintable {
-    var className: String { get }
+	var className: String { get }
 }
 
 extension ClassNamePrintable {
-    var className: String {
-        String(describing: type(of: self))
-    }
+	var className: String {
+		String(describing: type(of: self))
+	}
 }
 
 // MARK: - UIViewController + ClassNamePrintable

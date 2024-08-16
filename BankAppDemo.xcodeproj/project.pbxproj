@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4836BE562C6F2A9600D0E84D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE552C6F2A9600D0E84D /* README.md */; };
 		4836BE592C6F32F200D0E84D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836BE582C6F32F200D0E84D /* Coordinator.swift */; };
+		4836BE5B2C6F39E600D0E84D /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836BE5A2C6F39E600D0E84D /* HomeCoordinator.swift */; };
+		4836BE5D2C6F407E00D0E84D /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836BE5C2C6F407E00D0E84D /* NavigationCoordinator.swift */; };
+		4836BE5F2C6F409F00D0E84D /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */; };
+		4836BE692C6F443300D0E84D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE672C6F443300D0E84D /* .swiftlint.yml */; };
+		4836BE6A2C6F443300D0E84D /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE682C6F443300D0E84D /* .swiftformat */; };
 		48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734B2C6EF87A00795C41 /* AppDelegate.swift */; };
 		48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */; };
 		48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */; };
@@ -25,6 +30,14 @@
 		48A073932C6F230000795C41 /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073922C6F230000795C41 /* Color+Additions.swift */; };
 		48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073942C6F233500795C41 /* friends-tab-layout.swift */; };
 		48A073972C6F233500795C41 /* friends-list-mvvm-coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */; };
+		48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */; };
+		48CD5CF82C6FA91200EC63EF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */; };
+		48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF92C6FA94700EC63EF /* FriendsService.swift */; };
+		48CD5D012C6FAB5C00EC63EF /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CFF2C6FAB5C00EC63EF /* FriendsListViewModel.swift */; };
+		48CD5D022C6FAB5C00EC63EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D002C6FAB5C00EC63EF /* LoginViewModel.swift */; };
+		48CD5D052C6FAB6700EC63EF /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */; };
+		48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */; };
+		48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D072C6FAB7300EC63EF /* Friend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +60,11 @@
 /* Begin PBXFileReference section */
 		4836BE552C6F2A9600D0E84D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4836BE582C6F32F200D0E84D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4836BE5A2C6F39E600D0E84D /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		4836BE5C2C6F407E00D0E84D /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		4836BE672C6F443300D0E84D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		4836BE682C6F443300D0E84D /* .swiftformat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		48A073482C6EF87A00795C41 /* BankAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0734B2C6EF87A00795C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +85,14 @@
 		48A073922C6F230000795C41 /* Color+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
 		48A073942C6F233500795C41 /* friends-tab-layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "friends-tab-layout.swift"; sourceTree = "<group>"; };
 		48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "friends-list-mvvm-coordinator.swift"; sourceTree = "<group>"; };
+		48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		48CD5CF92C6FA94700EC63EF /* FriendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsService.swift; sourceTree = "<group>"; };
+		48CD5CFF2C6FAB5C00EC63EF /* FriendsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
+		48CD5D002C6FAB5C00EC63EF /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
+		48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		48CD5D072C6FAB7300EC63EF /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				4836BE552C6F2A9600D0E84D /* README.md */,
+				4836BE682C6F443300D0E84D /* .swiftformat */,
+				4836BE672C6F443300D0E84D /* .swiftlint.yml */,
 				48A0734A2C6EF87A00795C41 /* BankAppDemo */,
 				48A073612C6EF87B00795C41 /* BankAppDemoTests */,
 				48A0736B2C6EF87B00795C41 /* BankAppDemoUITests */,
@@ -160,6 +188,8 @@
 		48A0737E2C6EFDB800795C41 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */,
+				48CD5CF92C6FA94700EC63EF /* FriendsService.swift */,
 				48A073882C6F225600795C41 /* friend1.json */,
 				48A0738A2C6F225600795C41 /* friend2.json */,
 				48A073892C6F225600795C41 /* friend3.json */,
@@ -172,6 +202,7 @@
 		48A0737F2C6EFDCF00795C41 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				48CD5D072C6FAB7300EC63EF /* Friend.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +210,8 @@
 		48A073802C6EFDE100795C41 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */,
+				48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,6 +219,8 @@
 		48A073812C6EFE1000795C41 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				48CD5D002C6FAB5C00EC63EF /* LoginViewModel.swift */,
+				48CD5CFF2C6FAB5C00EC63EF /* FriendsListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -196,6 +231,10 @@
 				48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */,
 				48A073942C6F233500795C41 /* friends-tab-layout.swift */,
 				4836BE582C6F32F200D0E84D /* Coordinator.swift */,
+				4836BE5C2C6F407E00D0E84D /* NavigationCoordinator.swift */,
+				4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */,
+				48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */,
+				4836BE5A2C6F39E600D0E84D /* HomeCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -217,6 +256,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48A073722C6EF87B00795C41 /* Build configuration list for PBXNativeTarget "BankAppDemo" */;
 			buildPhases = (
+				4836BE602C6F42D000D0E84D /* ShellScript */,
 				48A073442C6EF87A00795C41 /* Sources */,
 				48A073452C6EF87A00795C41 /* Frameworks */,
 				48A073462C6EF87A00795C41 /* Resources */,
@@ -317,6 +357,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4836BE6A2C6F443300D0E84D /* .swiftformat in Resources */,
+				4836BE692C6F443300D0E84D /* .swiftlint.yml in Resources */,
 				48A073912C6F225600795C41 /* friend4.json in Resources */,
 				48A073902C6F225600795C41 /* man.json in Resources */,
 				48A0738D2C6F225600795C41 /* friend1.json in Resources */,
@@ -344,16 +386,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4836BE602C6F42D000D0E84D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# exit 0\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n    swiftlint --fix && swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\nif which swiftformat >/dev/null; then\n    swiftformat .\nelse\n    echo \"warning: SwiftFormat not installed.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48A073442C6EF87A00795C41 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CD5D052C6FAB6700EC63EF /* FriendsListViewController.swift in Sources */,
+				4836BE5F2C6F409F00D0E84D /* TabCoordinator.swift in Sources */,
 				48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */,
 				48A073932C6F230000795C41 /* Color+Additions.swift in Sources */,
 				48A073972C6F233500795C41 /* friends-list-mvvm-coordinator.swift in Sources */,
+				48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */,
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
+				48CD5D012C6FAB5C00EC63EF /* FriendsListViewModel.swift in Sources */,
+				48CD5CF82C6FA91200EC63EF /* AuthenticationService.swift in Sources */,
+				48CD5D022C6FAB5C00EC63EF /* LoginViewModel.swift in Sources */,
+				4836BE5D2C6F407E00D0E84D /* NavigationCoordinator.swift in Sources */,
+				48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */,
 				48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */,
+				48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */,
+				4836BE5B2C6F39E600D0E84D /* HomeCoordinator.swift in Sources */,
+				48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */,
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
 				4836BE592C6F32F200D0E84D /* Coordinator.swift in Sources */,
 			);
@@ -529,6 +603,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BankAppDemo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -556,6 +631,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BankAppDemo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
