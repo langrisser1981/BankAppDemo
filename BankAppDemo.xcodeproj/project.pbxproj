@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4836BE562C6F2A9600D0E84D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE552C6F2A9600D0E84D /* README.md */; };
+		4836BE592C6F32F200D0E84D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836BE582C6F32F200D0E84D /* Coordinator.swift */; };
 		48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734B2C6EF87A00795C41 /* AppDelegate.swift */; };
 		48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */; };
 		48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		4836BE552C6F2A9600D0E84D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4836BE582C6F32F200D0E84D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		48A073482C6EF87A00795C41 /* BankAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0734B2C6EF87A00795C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */,
 				48A073942C6F233500795C41 /* friends-tab-layout.swift */,
+				4836BE582C6F32F200D0E84D /* Coordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
 				48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */,
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
+				4836BE592C6F32F200D0E84D /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

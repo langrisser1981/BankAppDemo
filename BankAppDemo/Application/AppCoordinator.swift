@@ -7,9 +7,8 @@
 
 import UIKit
 
-class AppCoordinator: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class AppCoordinator: Coordinator {
+    override func start() {
         // 設置背景顏色為白色
         view.backgroundColor = .white
 
