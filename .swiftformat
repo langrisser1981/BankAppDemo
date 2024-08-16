@@ -1,0 +1,37 @@
+--swiftversion 5.5 # Swift 版本
+
+# format options
+--allman true
+--indent tab # tabs FTW!
+
+# file options
+--exclude Pods
+
+# rules
+# 先全部關閉，再一個個打開
+--disable all
+
+# 規則可以參考https://github.com/nicklockwood/SwiftFormat/blob/main/Rules.md
+# 規則 anyObjectProtocol,blankLinesAroundMark,blankLinesAtEndOfScope,blankLinesAtStartOfScope,blankLinesBetweenScopes,braces,consecutiveBlankLines,consecutiveSpaces,duplicateImports,elseOnSameLine,emptyBraces,enumNamespaces,extensionAccessControl,fileHeader,hoistPatternLet,indent,initCoderUnavailable,leadingDelimiters,linebreakAtEndOfFile,linebreaks,modifierOrder,numberFormatting,preferKeyPath,redundantBackticks,redundantBreak,redundantExtensionACL,redundantFileprivate,redundantGet,redundantInit,redundantLet,redundantLetError,redundantNilInit,redundantObjc,redundantParens,redundantPattern,redundantRawValues,redundantReturn,redundantSelf,redundantType,redundantVoidReturnType,semicolons,sortedImports,spaceAroundBraces,spaceAroundBrackets,spaceAroundComments,spaceAroundGenerics,spaceAroundOperators,spaceAroundParens,spaceInsideBraces,spaceInsideBrackets,spaceInsideComments,spaceInsideGenerics,spaceInsideParens,strongOutlets,strongifiedSelf,todos,trailingClosures,trailingCommas,trailingSpace,typeSugar,unusedArguments,void,wrap,wrapArguments,wrapAttributes,wrapMultilineStatementBraces,yodaConditions
+
+--enable          \
+    indent,        \# 指定縮排規則
+    markTypes,        \# 在所有的一級類別宣告前加上MARK
+    modifierOrder,        \# 變數宣告的修飾符按照順序宣告
+    # organizeDeclarations,        \# 變數宣告按照順序
+    sortImports,        \# 針對輸入模組作排列
+    linebreaks,        \
+    redundantBackticks,redundantBreak,redundantExtensionACL,redundantFileprivate,redundantGet,redundantInit,redundantLet,redundantLetError,redundantNilInit,redundantObjc,redundantParens,redundantPattern,redundantRawValues,redundantReturn,redundantSelf,redundantType,redundantVoidReturnType,        \# 移除多餘的寫法
+    spaceAroundBraces,spaceAroundBrackets,spaceAroundComments,spaceAroundGenerics,spaceAroundOperators,spaceAroundParens,spaceInsideBraces,spaceInsideBrackets,spaceInsideComments,spaceInsideGenerics,spaceInsideParens# 定義空格的格式
+
+
+
+
+
+
+
+
+
+
+
+
