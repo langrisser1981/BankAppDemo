@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734B2C6EF87A00795C41 /* AppDelegate.swift */; };
 		48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */; };
-		48A073502C6EF87A00795C41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* ViewController.swift */; };
+		48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */; };
 		48A073552C6EF87B00795C41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A073542C6EF87B00795C41 /* Assets.xcassets */; };
 		48A073582C6EF87B00795C41 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 48A073572C6EF87B00795C41 /* Base */; };
 		48A073632C6EF87B00795C41 /* BankAppDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073622C6EF87B00795C41 /* BankAppDemoTests.swift */; };
 		48A0736D2C6EF87B00795C41 /* BankAppDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0736C2C6EF87B00795C41 /* BankAppDemoUITests.swift */; };
 		48A0736F2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0736E2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift */; };
+		48A073852C6EFE4400795C41 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48A073842C6EFE4400795C41 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,15 +39,16 @@
 		48A073482C6EF87A00795C41 /* BankAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0734B2C6EF87A00795C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		48A0734F2C6EF87A00795C41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		48A073542C6EF87B00795C41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48A073572C6EF87B00795C41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		48A073592C6EF87B00795C41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48A073592C6EF87B00795C41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = BankAppDemo/Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		48A0735E2C6EF87B00795C41 /* BankAppDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankAppDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A073622C6EF87B00795C41 /* BankAppDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAppDemoTests.swift; sourceTree = "<group>"; };
 		48A073682C6EF87B00795C41 /* BankAppDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankAppDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0736C2C6EF87B00795C41 /* BankAppDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAppDemoUITests.swift; sourceTree = "<group>"; };
 		48A0736E2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAppDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		48A073842C6EFE4400795C41 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		48A0733F2C6EF87A00795C41 = {
 			isa = PBXGroup;
 			children = (
+				48A073842C6EFE4400795C41 /* README.md */,
 				48A0734A2C6EF87A00795C41 /* BankAppDemo */,
 				48A073612C6EF87B00795C41 /* BankAppDemoTests */,
 				48A0736B2C6EF87B00795C41 /* BankAppDemoUITests */,
@@ -97,12 +100,13 @@
 		48A0734A2C6EF87A00795C41 /* BankAppDemo */ = {
 			isa = PBXGroup;
 			children = (
-				48A0734B2C6EF87A00795C41 /* AppDelegate.swift */,
-				48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */,
-				48A0734F2C6EF87A00795C41 /* ViewController.swift */,
-				48A073542C6EF87B00795C41 /* Assets.xcassets */,
-				48A073562C6EF87B00795C41 /* LaunchScreen.storyboard */,
-				48A073592C6EF87B00795C41 /* Info.plist */,
+				48A073832C6EFE3900795C41 /* Application */,
+				48A073822C6EFE2600795C41 /* Coordinators */,
+				48A073812C6EFE1000795C41 /* ViewModels */,
+				48A073802C6EFDE100795C41 /* Views */,
+				48A0737F2C6EFDCF00795C41 /* Models */,
+				48A0737E2C6EFDB800795C41 /* Services */,
+				48A0737D2C6EFDA200795C41 /* Resources */,
 			);
 			path = BankAppDemo;
 			sourceTree = "<group>";
@@ -122,6 +126,61 @@
 				48A0736E2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift */,
 			);
 			path = BankAppDemoUITests;
+			sourceTree = "<group>";
+		};
+		48A0737D2C6EFDA200795C41 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				48A073542C6EF87B00795C41 /* Assets.xcassets */,
+				48A073592C6EF87B00795C41 /* Info.plist */,
+				48A073562C6EF87B00795C41 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		48A0737E2C6EFDB800795C41 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		48A0737F2C6EFDCF00795C41 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		48A073802C6EFDE100795C41 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		48A073812C6EFE1000795C41 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		48A073822C6EFE2600795C41 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		48A073832C6EFE3900795C41 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */,
+				48A0734B2C6EF87A00795C41 /* AppDelegate.swift */,
+				48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A073852C6EFE4400795C41 /* README.md in Resources */,
 				48A073552C6EF87B00795C41 /* Assets.xcassets in Resources */,
 				48A073582C6EF87B00795C41 /* Base in Resources */,
 			);
@@ -254,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48A073502C6EF87A00795C41 /* ViewController.swift in Sources */,
+				48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */,
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
 			);
@@ -431,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BankAppDemo/Info.plist;
+				INFOPLIST_FILE = BankAppDemo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -458,7 +518,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BankAppDemo/Info.plist;
+				INFOPLIST_FILE = BankAppDemo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

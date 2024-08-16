@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AppCoordinator.swift
 //  BankAppDemo
 //
 //  Created by 程信傑 on 2024/8/16.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AppCoordinator: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // 設置背景顏色為白色
