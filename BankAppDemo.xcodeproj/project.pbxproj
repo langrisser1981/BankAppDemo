@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4836BE562C6F2A9600D0E84D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE552C6F2A9600D0E84D /* README.md */; };
 		48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734B2C6EF87A00795C41 /* AppDelegate.swift */; };
 		48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */; };
 		48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */; };
@@ -15,7 +16,14 @@
 		48A073632C6EF87B00795C41 /* BankAppDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073622C6EF87B00795C41 /* BankAppDemoTests.swift */; };
 		48A0736D2C6EF87B00795C41 /* BankAppDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0736C2C6EF87B00795C41 /* BankAppDemoUITests.swift */; };
 		48A0736F2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0736E2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift */; };
-		48A073852C6EFE4400795C41 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48A073842C6EFE4400795C41 /* README.md */; };
+		48A0738D2C6F225600795C41 /* friend1.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A073882C6F225600795C41 /* friend1.json */; };
+		48A0738E2C6F225600795C41 /* friend3.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A073892C6F225600795C41 /* friend3.json */; };
+		48A0738F2C6F225600795C41 /* friend2.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A0738A2C6F225600795C41 /* friend2.json */; };
+		48A073902C6F225600795C41 /* man.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A0738B2C6F225600795C41 /* man.json */; };
+		48A073912C6F225600795C41 /* friend4.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A0738C2C6F225600795C41 /* friend4.json */; };
+		48A073932C6F230000795C41 /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073922C6F230000795C41 /* Color+Additions.swift */; };
+		48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073942C6F233500795C41 /* friends-tab-layout.swift */; };
+		48A073972C6F233500795C41 /* friends-list-mvvm-coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4836BE552C6F2A9600D0E84D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		48A073482C6EF87A00795C41 /* BankAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0734B2C6EF87A00795C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +57,14 @@
 		48A073682C6EF87B00795C41 /* BankAppDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankAppDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0736C2C6EF87B00795C41 /* BankAppDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAppDemoUITests.swift; sourceTree = "<group>"; };
 		48A0736E2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAppDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		48A073842C6EFE4400795C41 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		48A073882C6F225600795C41 /* friend1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friend1.json; sourceTree = "<group>"; };
+		48A073892C6F225600795C41 /* friend3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friend3.json; sourceTree = "<group>"; };
+		48A0738A2C6F225600795C41 /* friend2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friend2.json; sourceTree = "<group>"; };
+		48A0738B2C6F225600795C41 /* man.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = man.json; sourceTree = "<group>"; };
+		48A0738C2C6F225600795C41 /* friend4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friend4.json; sourceTree = "<group>"; };
+		48A073922C6F230000795C41 /* Color+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
+		48A073942C6F233500795C41 /* friends-tab-layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "friends-tab-layout.swift"; sourceTree = "<group>"; };
+		48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "friends-list-mvvm-coordinator.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +95,7 @@
 		48A0733F2C6EF87A00795C41 = {
 			isa = PBXGroup;
 			children = (
-				48A073842C6EFE4400795C41 /* README.md */,
+				4836BE552C6F2A9600D0E84D /* README.md */,
 				48A0734A2C6EF87A00795C41 /* BankAppDemo */,
 				48A073612C6EF87B00795C41 /* BankAppDemoTests */,
 				48A0736B2C6EF87B00795C41 /* BankAppDemoUITests */,
@@ -131,6 +147,7 @@
 		48A0737D2C6EFDA200795C41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				48A073922C6F230000795C41 /* Color+Additions.swift */,
 				48A073542C6EF87B00795C41 /* Assets.xcassets */,
 				48A073592C6EF87B00795C41 /* Info.plist */,
 				48A073562C6EF87B00795C41 /* LaunchScreen.storyboard */,
@@ -141,6 +158,11 @@
 		48A0737E2C6EFDB800795C41 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48A073882C6F225600795C41 /* friend1.json */,
+				48A0738A2C6F225600795C41 /* friend2.json */,
+				48A073892C6F225600795C41 /* friend3.json */,
+				48A0738C2C6F225600795C41 /* friend4.json */,
+				48A0738B2C6F225600795C41 /* man.json */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -169,6 +191,8 @@
 		48A073822C6EFE2600795C41 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */,
+				48A073942C6F233500795C41 /* friends-tab-layout.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -271,6 +295,9 @@
 				Base,
 			);
 			mainGroup = 48A0733F2C6EF87A00795C41;
+			packageReferences = (
+				4836BE572C6F317B00D0E84D /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 48A073492C6EF87A00795C41 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -287,9 +314,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48A073852C6EFE4400795C41 /* README.md in Resources */,
+				48A073912C6F225600795C41 /* friend4.json in Resources */,
+				48A073902C6F225600795C41 /* man.json in Resources */,
+				48A0738D2C6F225600795C41 /* friend1.json in Resources */,
+				48A0738F2C6F225600795C41 /* friend2.json in Resources */,
 				48A073552C6EF87B00795C41 /* Assets.xcassets in Resources */,
 				48A073582C6EF87B00795C41 /* Base in Resources */,
+				4836BE562C6F2A9600D0E84D /* README.md in Resources */,
+				48A0738E2C6F225600795C41 /* friend3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +347,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */,
+				48A073932C6F230000795C41 /* Color+Additions.swift in Sources */,
+				48A073972C6F233500795C41 /* friends-list-mvvm-coordinator.swift in Sources */,
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
+				48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */,
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +684,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4836BE572C6F317B00D0E84D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 48A073402C6EF87A00795C41 /* Project object */;
 }

@@ -1,5 +1,6 @@
 # BankAppDemo
 
+```
 BankAppDemo/
 │
 ├── Application/
@@ -25,7 +26,16 @@ BankAppDemo/
 ├── Services/
 │   ├── AuthenticationService.swift
 │   └── FriendsService.swift
+│   └── friend1.json
+│   └── friend2.json
+│   └── friend3.json
+│   └── friend4.json
+│   └── man.json
 │
 └── Resources/
     └── Assets.xcassets
+    └── Color+Additions.swift
     └── Info.plist
+    └── LaunchScreen.storyboard
+
+```
