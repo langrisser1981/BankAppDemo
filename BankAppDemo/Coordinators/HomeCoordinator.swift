@@ -9,13 +9,19 @@ import Combine
 import Foundation
 import UIKit
 
-final class HomeCoordinator: TabCoordinator {
+class HomeCoordinator: TabCoordinator {
+	private let status: Int
+
+	init(status: Int) {
+		self.status = status
+		super.init()
+	}
+
 	override func setupSubscriptions() {
 		print("開始取得使用者資訊")
 	}
 
 	override func start() {
-		super.start()
 		embeddedNavigationController.setViewControllers([embeddedTabBarController], animated: false)
 
 		//        let moneyCoordinator = MoneyCoordinator(navigationController: UINavigationController())
@@ -35,7 +41,6 @@ final class HomeCoordinator: TabCoordinator {
 }
 
 /*
-
 
      override func start() {
          super.start()
