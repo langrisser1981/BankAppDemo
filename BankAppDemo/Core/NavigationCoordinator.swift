@@ -8,36 +8,43 @@ import Foundation
 import UIKit
 
 class NavigationCoordinator: Coordinator {
-	let embeddedNavigationController = UINavigationController()
-
-	var currentViewController: UIViewController? {
-		embeddedNavigationController.visibleViewController
-	}
-
-	override func start() {
-		embeddedNavigationController.navigationBar.isHidden = true // 關閉navigation bar
+	private lazy var containerNavController: UINavigationController = {
+		let navController = UINavigationController()
+		navController.navigationBar.isHidden = true // 關閉navigation bar
 
 		// iOS15以上，使用 UINavigationBarAppearance 調整 navigationBar 樣式。
 		let appearance = UINavigationBarAppearance()
 		appearance.configureWithOpaqueBackground()
 		appearance.backgroundColor = UIColor.clear
 		appearance.shadowColor = .clear
-		embeddedNavigationController.navigationBar.scrollEdgeAppearance = appearance
-		embeddedNavigationController.navigationBar.standardAppearance = appearance
+		navController.navigationBar.scrollEdgeAppearance = appearance
+		navController.navigationBar.standardAppearance = appearance
 
-		add(childController: embeddedNavigationController)
+		return navController
+	}()
+
+	var currentViewController: UIViewController? {
+		containerNavController.visibleViewController
 	}
 
-	func navigateToPage(_ page: UIViewController, animated: Bool = true) {
-		embeddedNavigationController.pushViewController(page, animated: animated)
+	override func start() {
+		add(childController: containerNavController)
 	}
 
-	func navigateBack(animated: Bool = true) {
-		embeddedNavigationController.popViewController(animated: animated)
+	func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+		containerNavController.setViewControllers(viewControllers, animated: animated)
 	}
 
-	func navigateToRoot(animated: Bool = true) {
-		embeddedNavigationController.popToRootViewController(animated: animated)
+	func pushViewController(_ viewController: UIViewController, animated: Bool) {
+		containerNavController.pushViewController(viewController, animated: animated)
+	}
+
+	func popViewController(animated: Bool) -> UIViewController? {
+		containerNavController.popViewController(animated: animated)
+	}
+
+	func popToRootViewController(animated: Bool) -> [UIViewController]? {
+		containerNavController.popToRootViewController(animated: animated)
 	}
 
 	func present(
