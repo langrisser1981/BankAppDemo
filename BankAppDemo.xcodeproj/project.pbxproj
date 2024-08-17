@@ -15,6 +15,8 @@
 		4836BE692C6F443300D0E84D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE672C6F443300D0E84D /* .swiftlint.yml */; };
 		4836BE6A2C6F443300D0E84D /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE682C6F443300D0E84D /* .swiftformat */; };
 		48541B492C70C89A009280C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B482C70C89A009280C2 /* User.swift */; };
+		48541B4B2C70CA86009280C2 /* DataSourceStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B4A2C70CA86009280C2 /* DataSourceStrategy.swift */; };
+		48541B4F2C70CBC7009280C2 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B4E2C70CBC7009280C2 /* APIService.swift */; };
 		48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734B2C6EF87A00795C41 /* AppDelegate.swift */; };
 		48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */; };
 		48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */; };
@@ -71,6 +73,8 @@
 		4836BE672C6F443300D0E84D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4836BE682C6F443300D0E84D /* .swiftformat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		48541B482C70C89A009280C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		48541B4A2C70CA86009280C2 /* DataSourceStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceStrategy.swift; sourceTree = "<group>"; };
+		48541B4E2C70CBC7009280C2 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		48A073482C6EF87A00795C41 /* BankAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0734B2C6EF87A00795C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 		48A0737E2C6EFDB800795C41 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48541B4E2C70CBC7009280C2 /* APIService.swift */,
 				48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */,
 				48CD5CF92C6FA94700EC63EF /* FriendsService.swift */,
 				48A073882C6F225600795C41 /* friend1.json */,
@@ -275,6 +280,7 @@
 				4836BE582C6F32F200D0E84D /* Coordinator.swift */,
 				4836BE5C2C6F407E00D0E84D /* NavigationCoordinator.swift */,
 				4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */,
+				48541B4A2C70CA86009280C2 /* DataSourceStrategy.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */,
 				48A073932C6F230000795C41 /* Color+Additions.swift in Sources */,
 				48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */,
+				48541B4B2C70CA86009280C2 /* DataSourceStrategy.swift in Sources */,
 				48CD5D0D2C70465300EC63EF /* UIStackView+Extension.swift in Sources */,
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
 				48CD5D012C6FAB5C00EC63EF /* FriendsListViewModel.swift in Sources */,
@@ -466,6 +473,7 @@
 				48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */,
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
 				4836BE592C6F32F200D0E84D /* Coordinator.swift in Sources */,
+				48541B4F2C70CBC7009280C2 /* APIService.swift in Sources */,
 				48541B492C70C89A009280C2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

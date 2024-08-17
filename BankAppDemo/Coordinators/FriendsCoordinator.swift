@@ -8,11 +8,44 @@
 import Foundation
 import UIKit
 
-// MARK: - FriendsCoordinator
-
 class FriendsCoordinator: Coordinator {
+	private var viewModel: FriendsListViewModel!
+	private var friendsListViewController: FriendsListViewController!
+    
+	init(status: Int) {
+		super.init()
+		setupViewModel(for: status)
+	}
+    
 	override func start() {
-		let friendsViewController = FriendsViewController()
-		add(childController: friendsViewController)
+		friendsListViewController = FriendsListViewController()
+		friendsListViewController.viewModel = viewModel
+		add(childController: friendsListViewController)
+        
+		// 開始獲取朋友列表
+		fetchFriendsList()
+	}
+    
+	private func setupViewModel(for status: Int) {
+		// 根據狀態創建適當的數據源
+		let dataSources: [DataSourceStrategy]
+		switch status {
+		case 1:
+			dataSources = [APIDataSource(endpoint: .noFriends)]
+		case 2:
+			dataSources = [APIDataSource(endpoint: .friend1), APIDataSource(endpoint: .friend2)]
+		case 3:
+			dataSources = [APIDataSource(endpoint: .friendWithInvites)]
+		default:
+			fatalError("無效的狀態")
+		}
+        
+		// 使用數據源創建 ViewModel
+		viewModel = FriendsListViewModel(dataSources: dataSources)
+	}
+    
+	private func fetchFriendsList() {
+		// 調用 ViewModel 的方法來獲取朋友列表
+		viewModel.fetchAndCombineFriendsList()
 	}
 }

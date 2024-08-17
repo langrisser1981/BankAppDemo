@@ -12,6 +12,7 @@ BankAppDemo/
 │   ├── Coordinator.swift
 │   ├── NavigationCoordinator.swift
 │   └── TabCoordinator.swift
+│   └── DataSourceStrategy.swift
 │
 ├── Coordinators/
 │   ├── LoginCoordinator.swift
@@ -35,6 +36,7 @@ BankAppDemo/
 │   └── Friend.swift
 │
 ├── Services/
+│   ├── APIService.swift
 │   ├── AuthenticationService.swift
 │   └── FriendsService.swift
 │   └── friend1.json

@@ -10,6 +10,6 @@ import Foundation
 // MARK: - User Model
 
 struct User: Decodable {
-    let name: String
-    let kokoid: String
+	let name: String
+	let kokoid: String
 }

@@ -34,7 +34,7 @@ class HomeCoordinator: TabCoordinator {
 
 		// 初始化子協調器並保存引用
 		moneyCoordinator = MoneyCoordinator()
-		friendsCoordinator = FriendsCoordinator()
+		friendsCoordinator = FriendsCoordinator(status: 3)
 		accountingCoordinator = AccountingCoordinator()
 		settingsCoordinator = SettingsCoordinator()
 		paymentCoordinator = PaymentCoordinator()
