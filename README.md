@@ -8,12 +8,17 @@ BankAppDemo/
 │   ├── SceneDelegate.swift
 │   └── AppCoordinator.swift
 │
-├── Coordinators/
+├── Core/
 │   ├── Coordinator.swift
 │   ├── NavigationCoordinator.swift
-│   ├── TabCoordinator.swift
+│   └── TabCoordinator.swift
+│
+├── Coordinators/
 │   ├── LoginCoordinator.swift
 │   └── HomeCoordinator.swift
+│   └── FriendsCoordinator.swift
+│   └── MockCoordinators.swift
+│   └── PaymentCoordinator.swift
 │
 ├── ViewModels/
 │   ├── LoginViewModel.swift
@@ -22,6 +27,8 @@ BankAppDemo/
 ├── Views/
 │   ├── LoginViewController.swift
 │   └── FriendsListViewController.swift
+│   └── PaymentViewController.swift
+│   └── UIStackView+Extension.swift
 │
 ├── Models/
 │   └── Friend.swift

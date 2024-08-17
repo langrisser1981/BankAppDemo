@@ -29,7 +29,6 @@
 		48A073912C6F225600795C41 /* friend4.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A0738C2C6F225600795C41 /* friend4.json */; };
 		48A073932C6F230000795C41 /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073922C6F230000795C41 /* Color+Additions.swift */; };
 		48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073942C6F233500795C41 /* friends-tab-layout.swift */; };
-		48A073972C6F233500795C41 /* friends-list-mvvm-coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */; };
 		48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */; };
 		48CD5CF82C6FA91200EC63EF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */; };
 		48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF92C6FA94700EC63EF /* FriendsService.swift */; };
@@ -38,6 +37,12 @@
 		48CD5D052C6FAB6700EC63EF /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */; };
 		48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */; };
 		48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D072C6FAB7300EC63EF /* Friend.swift */; };
+		48CD5D0B2C703A4500EC63EF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 48CD5D0A2C703A4500EC63EF /* SnapKit */; };
+		48CD5D0D2C70465300EC63EF /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */; };
+		48CD5D102C70543000EC63EF /* MockCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D0F2C70543000EC63EF /* MockCoordinators.swift */; };
+		48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */; };
+		48CD5D142C705EFE00EC63EF /* PaymentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */; };
+		48CD5D162C705F9E00EC63EF /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +89,6 @@
 		48A0738C2C6F225600795C41 /* friend4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friend4.json; sourceTree = "<group>"; };
 		48A073922C6F230000795C41 /* Color+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
 		48A073942C6F233500795C41 /* friends-tab-layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "friends-tab-layout.swift"; sourceTree = "<group>"; };
-		48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "friends-list-mvvm-coordinator.swift"; sourceTree = "<group>"; };
 		48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		48CD5CF92C6FA94700EC63EF /* FriendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsService.swift; sourceTree = "<group>"; };
@@ -93,6 +97,11 @@
 		48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48CD5D072C6FAB7300EC63EF /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		48CD5D0F2C70543000EC63EF /* MockCoordinators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoordinators.swift; sourceTree = "<group>"; };
+		48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCoordinator.swift; sourceTree = "<group>"; };
+		48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCoordinator.swift; sourceTree = "<group>"; };
+		48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CD5D0B2C703A4500EC63EF /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +140,7 @@
 				48A073612C6EF87B00795C41 /* BankAppDemoTests */,
 				48A0736B2C6EF87B00795C41 /* BankAppDemoUITests */,
 				48A073492C6EF87A00795C41 /* Products */,
+				48CD5D092C703A4500EC63EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				48A073832C6EFE3900795C41 /* Application */,
+				48CD5D0E2C7048A800EC63EF /* Core */,
 				48A073822C6EFE2600795C41 /* Coordinators */,
 				48A073812C6EFE1000795C41 /* ViewModels */,
 				48A073802C6EFDE100795C41 /* Views */,
@@ -212,6 +224,8 @@
 			children = (
 				48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */,
 				48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */,
+				48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */,
+				48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,13 +242,12 @@
 		48A073822C6EFE2600795C41 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				48A073952C6F233500795C41 /* friends-list-mvvm-coordinator.swift */,
 				48A073942C6F233500795C41 /* friends-tab-layout.swift */,
-				4836BE582C6F32F200D0E84D /* Coordinator.swift */,
-				4836BE5C2C6F407E00D0E84D /* NavigationCoordinator.swift */,
-				4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */,
 				48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */,
 				4836BE5A2C6F39E600D0E84D /* HomeCoordinator.swift */,
+				48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */,
+				48CD5D0F2C70543000EC63EF /* MockCoordinators.swift */,
+				48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -247,6 +260,23 @@
 				48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		48CD5D092C703A4500EC63EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48CD5D0E2C7048A800EC63EF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4836BE582C6F32F200D0E84D /* Coordinator.swift */,
+				4836BE5C2C6F407E00D0E84D /* NavigationCoordinator.swift */,
+				4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +296,9 @@
 			dependencies = (
 			);
 			name = BankAppDemo;
+			packageProductDependencies = (
+				48CD5D0A2C703A4500EC63EF /* SnapKit */,
+			);
 			productName = BankAppDemo;
 			productReference = 48A073482C6EF87A00795C41 /* BankAppDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -414,10 +447,12 @@
 			files = (
 				48CD5D052C6FAB6700EC63EF /* FriendsListViewController.swift in Sources */,
 				4836BE5F2C6F409F00D0E84D /* TabCoordinator.swift in Sources */,
+				48CD5D142C705EFE00EC63EF /* PaymentCoordinator.swift in Sources */,
+				48CD5D102C70543000EC63EF /* MockCoordinators.swift in Sources */,
 				48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */,
 				48A073932C6F230000795C41 /* Color+Additions.swift in Sources */,
-				48A073972C6F233500795C41 /* friends-list-mvvm-coordinator.swift in Sources */,
 				48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */,
+				48CD5D0D2C70465300EC63EF /* UIStackView+Extension.swift in Sources */,
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
 				48CD5D012C6FAB5C00EC63EF /* FriendsListViewModel.swift in Sources */,
 				48CD5CF82C6FA91200EC63EF /* AuthenticationService.swift in Sources */,
@@ -425,7 +460,9 @@
 				4836BE5D2C6F407E00D0E84D /* NavigationCoordinator.swift in Sources */,
 				48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */,
 				48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */,
+				48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */,
 				48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */,
+				48CD5D162C705F9E00EC63EF /* PaymentViewController.swift in Sources */,
 				4836BE5B2C6F39E600D0E84D /* HomeCoordinator.swift in Sources */,
 				48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */,
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
@@ -775,6 +812,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		48CD5D0A2C703A4500EC63EF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4836BE572C6F317B00D0E84D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 48A073402C6EF87A00795C41 /* Project object */;
 }
