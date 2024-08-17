@@ -30,6 +30,7 @@ class LoginCoordinator: Coordinator {
 
 extension LoginCoordinator: LoginViewControllerDelegate {
 	func didSelectStatus(_ status: Int) {
+		UserDefaults.standard.set(status, forKey: UserDefaultsKeys.userStatus)
 		delegate?.didSelectStatus(status)
 	}
 }

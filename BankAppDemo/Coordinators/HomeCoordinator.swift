@@ -12,18 +12,12 @@ import UIKit
 // MARK: - HomeCoordinator
 
 class HomeCoordinator: TabCoordinator {
-	private let status: Int
 	// 添加子協調器的屬性以保持強引用
 	private var moneyCoordinator: MoneyCoordinator?
 	private var friendsCoordinator: FriendsCoordinator?
 	private var paymentCoordinator: PaymentCoordinator?
 	private var accountingCoordinator: AccountingCoordinator?
 	private var settingsCoordinator: SettingsCoordinator?
-
-	init(status: Int) {
-		self.status = status
-		super.init()
-	}
 
 	override func setupSubscriptions() {
 		print("開始取得使用者資訊")
@@ -34,10 +28,10 @@ class HomeCoordinator: TabCoordinator {
 
 		// 初始化子協調器並保存引用
 		moneyCoordinator = MoneyCoordinator()
-		friendsCoordinator = FriendsCoordinator(status: 3)
+		friendsCoordinator = FriendsCoordinator()
+		paymentCoordinator = PaymentCoordinator()
 		accountingCoordinator = AccountingCoordinator()
 		settingsCoordinator = SettingsCoordinator()
-		paymentCoordinator = PaymentCoordinator()
 
 		// 創建一個包含所有子協調器的陣列
 		let coordinators: [UIViewController] = [

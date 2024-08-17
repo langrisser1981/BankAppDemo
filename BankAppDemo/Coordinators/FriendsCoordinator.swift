@@ -9,15 +9,13 @@ import Foundation
 import UIKit
 
 class FriendsCoordinator: Coordinator {
-	private var viewModel: FriendsListViewModel!
+	var viewModel: FriendsListViewModel!
 	private var friendsListViewController: FriendsListViewController!
     
-	init(status: Int) {
-		super.init()
-		setupViewModel(for: status)
-	}
-    
 	override func start() {
+		let status = UserDefaults.standard.integer(forKey: UserDefaultsKeys.userStatus)
+		setupViewModel(for: status)
+        
 		friendsListViewController = FriendsListViewController()
 		friendsListViewController.viewModel = viewModel
 		add(childController: friendsListViewController)

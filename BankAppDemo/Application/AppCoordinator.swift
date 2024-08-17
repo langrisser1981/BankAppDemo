@@ -32,7 +32,7 @@ class AppCoordinator: Coordinator {
 	}
 
 	private func showHomeCoordinator(with status: Int) {
-		homeCoordinator = HomeCoordinator(status: status)
+		homeCoordinator = HomeCoordinator()
 		guard let homeCoordinator = homeCoordinator else {
 			// 處理 homeCoordinator 為 nil 的情況
 			print("錯誤：無法創建 HomeCoordinator")
@@ -53,4 +53,12 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 		remove(childController: loginCoordinator)
 		showHomeCoordinator(with: status)
 	}
+}
+
+// MARK: - UserDefaultsKeys
+
+enum UserDefaultsKeys {
+	// 此值代表使用者在登入時選擇的狀態
+	// 該狀態將影響後續呼叫的資料來源
+	static let userStatus = "userStatus"
 }
