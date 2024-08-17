@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "AEE133A2-8E2F-4B38-B1BC-C56C8EA99DBE",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BankAppDemo.xcodeproj",
+      "identifier" : "48A073472C6EF87A00795C41",
+      "name" : "BankAppDemo"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BankAppDemo.xcodeproj",
+        "identifier" : "48A0735D2C6EF87B00795C41",
+        "name" : "BankAppDemoTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BankAppDemo.xcodeproj",
+        "identifier" : "48A073672C6EF87B00795C41",
+        "name" : "BankAppDemoUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
