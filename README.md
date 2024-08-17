@@ -31,6 +31,7 @@ BankAppDemo/
 │   └── UIStackView+Extension.swift
 │
 ├── Models/
+│   └── User.swift
 │   └── Friend.swift
 │
 ├── Services/

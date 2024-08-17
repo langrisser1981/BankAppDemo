@@ -14,6 +14,7 @@
 		4836BE5F2C6F409F00D0E84D /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */; };
 		4836BE692C6F443300D0E84D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE672C6F443300D0E84D /* .swiftlint.yml */; };
 		4836BE6A2C6F443300D0E84D /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = 4836BE682C6F443300D0E84D /* .swiftformat */; };
+		48541B492C70C89A009280C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B482C70C89A009280C2 /* User.swift */; };
 		48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734B2C6EF87A00795C41 /* AppDelegate.swift */; };
 		48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */; };
 		48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */; };
@@ -28,7 +29,6 @@
 		48A073902C6F225600795C41 /* man.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A0738B2C6F225600795C41 /* man.json */; };
 		48A073912C6F225600795C41 /* friend4.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A0738C2C6F225600795C41 /* friend4.json */; };
 		48A073932C6F230000795C41 /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073922C6F230000795C41 /* Color+Additions.swift */; };
-		48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073942C6F233500795C41 /* friends-tab-layout.swift */; };
 		48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */; };
 		48CD5CF82C6FA91200EC63EF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */; };
 		48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF92C6FA94700EC63EF /* FriendsService.swift */; };
@@ -70,6 +70,7 @@
 		4836BE5E2C6F409F00D0E84D /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		4836BE672C6F443300D0E84D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4836BE682C6F443300D0E84D /* .swiftformat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
+		48541B482C70C89A009280C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48A073482C6EF87A00795C41 /* BankAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0734B2C6EF87A00795C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +89,6 @@
 		48A0738B2C6F225600795C41 /* man.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = man.json; sourceTree = "<group>"; };
 		48A0738C2C6F225600795C41 /* friend4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friend4.json; sourceTree = "<group>"; };
 		48A073922C6F230000795C41 /* Color+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
-		48A073942C6F233500795C41 /* friends-tab-layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "friends-tab-layout.swift"; sourceTree = "<group>"; };
 		48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		48CD5CF92C6FA94700EC63EF /* FriendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsService.swift; sourceTree = "<group>"; };
@@ -214,6 +214,7 @@
 		48A0737F2C6EFDCF00795C41 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				48541B482C70C89A009280C2 /* User.swift */,
 				48CD5D072C6FAB7300EC63EF /* Friend.swift */,
 			);
 			path = Models;
@@ -242,7 +243,6 @@
 		48A073822C6EFE2600795C41 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				48A073942C6F233500795C41 /* friends-tab-layout.swift */,
 				48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */,
 				4836BE5A2C6F39E600D0E84D /* HomeCoordinator.swift */,
 				48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */,
@@ -459,7 +459,6 @@
 				48CD5D022C6FAB5C00EC63EF /* LoginViewModel.swift in Sources */,
 				4836BE5D2C6F407E00D0E84D /* NavigationCoordinator.swift in Sources */,
 				48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */,
-				48A073962C6F233500795C41 /* friends-tab-layout.swift in Sources */,
 				48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */,
 				48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */,
 				48CD5D162C705F9E00EC63EF /* PaymentViewController.swift in Sources */,
@@ -467,6 +466,7 @@
 				48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */,
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
 				4836BE592C6F32F200D0E84D /* Coordinator.swift in Sources */,
+				48541B492C70C89A009280C2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
