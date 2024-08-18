@@ -18,6 +18,9 @@ class FriendsListViewModel {
 	// 發布合併後的好友列表，只允許內部設定
 	@Published private(set) var combinedFriends: [Friend] = []
     
+	// 發布過濾後的好友列表，只允許內部設定
+	@Published private(set) var filteredFriends: [Friend] = []
+    
 	// 初始化方法，接受一個或多個數據源策略
 	init(dataSources: [DataSourceStrategy]) {
 		self.dataSources = dataSources
@@ -43,8 +46,18 @@ class FriendsListViewModel {
 			}, receiveValue: { [weak self] friends in
 				// 更新合併後的好友列表
 				self?.combinedFriends = friends
+				self?.filteredFriends = friends
 			})
 			.store(in: &cancellables) // 存儲訂閱以便後續取消
+	}
+    
+	// 過濾好友列表的方法
+	func filterFriends(with searchText: String) {
+		if searchText.isEmpty {
+			filteredFriends = combinedFriends
+		} else {
+			filteredFriends = combinedFriends.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+		}
 	}
     
 	// 合併重複好友的私有方法

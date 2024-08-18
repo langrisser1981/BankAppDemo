@@ -20,7 +20,7 @@ struct FriendResponse: Decodable {
 
 // MARK: - Friend
 
-struct Friend: Decodable {
+struct Friend: Decodable, Hashable {
 	let name: String
 	let status: Int
 	let isTop: Bool
@@ -65,6 +65,20 @@ struct Friend: Decodable {
 		}
         
 		return nil
+	}
+    
+	// MARK: - Hashable
+
+	// 實現 Hashable 協議的 hash(into:) 方法
+	func hash(into hasher: inout Hasher) {
+		// 使用 fid 作為唯一標識符來計算哈希值
+		hasher.combine(fid)
+	}
+    
+	// 實現 Equatable 協議的 == 方法（Hashable 繼承自 Equatable）
+	static func == (lhs: Friend, rhs: Friend) -> Bool {
+		// 比較兩個 Friend 實例是否相等，這裡我們只比較 fid
+		lhs.fid == rhs.fid
 	}
 }
 
