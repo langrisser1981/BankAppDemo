@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIStackView {
-	/// 創建一個配置好的 UIStackView
+	/// 建立一個設定好的 UIStackView
 	/// - Parameters:
 	///   - arrangedSubviews: 要添加到 stack view 的子視圖數組
 	///   - axis: stack view 的軸向（默認為垂直）

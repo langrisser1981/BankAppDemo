@@ -30,6 +30,7 @@ BankAppDemo/
 │   └── FriendsListViewController.swift
 │   └── PaymentViewController.swift
 │   └── UIStackView+Extension.swift
+│   └── UIButton+Extension.swift
 │
 ├── Models/
 │   └── User.swift
@@ -37,8 +38,6 @@ BankAppDemo/
 │
 ├── Services/
 │   ├── APIService.swift
-│   ├── AuthenticationService.swift
-│   └── FriendsService.swift
 │   └── friend1.json
 │   └── friend2.json
 │   └── friend3.json
@@ -46,9 +45,10 @@ BankAppDemo/
 │   └── man.json
 │
 └── Resources/
-    └── Assets.xcassets
     └── Color+Additions.swift
+    └── Assets.xcassets
     └── Info.plist
+    └── BankAppDemo.xctestplan
     └── LaunchScreen.storyboard
 
 ```

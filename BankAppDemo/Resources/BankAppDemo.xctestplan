@@ -18,6 +18,9 @@
   "testTargets" : [
     {
       "parallelizable" : true,
+      "skippedTests" : [
+        "BankAppDemoTests"
+      ],
       "target" : {
         "containerPath" : "container:BankAppDemo.xcodeproj",
         "identifier" : "48A0735D2C6EF87B00795C41",

@@ -5,24 +5,48 @@
 //  Created by 程信傑 on 2024/8/16.
 //
 
+import Combine
 import Foundation
 import UIKit
 
 // MARK: - LoginCoordinatorDelegate
 
 protocol LoginCoordinatorDelegate: AnyObject {
-	func didSelectStatus(_ status: Int)
+	func didLogin(_ coordinator: LoginCoordinator)
 }
 
 // MARK: - LoginCoordinator
 
 class LoginCoordinator: Coordinator {
 	weak var delegate: LoginCoordinatorDelegate?
+	private let viewModel: LoginViewModel
+	private var loginViewController: LoginViewController!
+
+	override init() {
+		viewModel = LoginViewModel()
+		super.init()
+	}
 
 	override func start() {
-		let loginViewController = LoginViewController()
+		// 初始化 ViewController
+		loginViewController = LoginViewController(viewModel: viewModel)
 		loginViewController.delegate = self
 		add(childController: loginViewController)
+	}
+
+	override func setupSubscriptions() {
+		// 監聽登入狀態變化
+		viewModel.$isLoggedIn
+			.filter { $0 }
+			.sink { [weak self] _ in
+				self?.handleLoginCompleted()
+			}
+			.store(in: &cancellables)
+	}
+
+	// 處理登入完成後的操作
+	private func handleLoginCompleted() {
+		delegate?.didLogin(self)
 	}
 }
 
@@ -30,7 +54,10 @@ class LoginCoordinator: Coordinator {
 
 extension LoginCoordinator: LoginViewControllerDelegate {
 	func didSelectStatus(_ status: Int) {
+		// 儲存使用者狀態到 UserDefaults
 		UserDefaults.standard.set(status, forKey: UserDefaultsKeys.userStatus)
-		delegate?.didSelectStatus(status)
+
+		// 取得使用者資料
+		viewModel.fetchUserData()
 	}
 }

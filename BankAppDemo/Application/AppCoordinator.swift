@@ -10,48 +10,56 @@ import UIKit
 // MARK: - AppCoordinator
 
 class AppCoordinator: Coordinator {
-	// 添加以下屬性
 	private var loginCoordinator: LoginCoordinator?
 	private var homeCoordinator: HomeCoordinator?
 
 	override func start() {
-		// 設置背景顏色為白色
-		view.backgroundColor = .white
+		// 應用程式啟動時顯示登入畫面
 		showLoginCoordinator()
 	}
 
+	// 建立並顯示登入畫面
 	private func showLoginCoordinator() {
-		loginCoordinator = LoginCoordinator()
-		loginCoordinator?.delegate = self
-		guard let loginCoordinator = loginCoordinator else {
-			// 處理 loginCoordinator 為 nil 的情況
-			print("錯誤：無法創建 LoginCoordinator")
-			return
-		}
+		let loginCoordinator = LoginCoordinator()
+		loginCoordinator.delegate = self
 		add(childController: loginCoordinator)
+		self.loginCoordinator = loginCoordinator
 	}
 
-	private func showHomeCoordinator(with status: Int) {
-		homeCoordinator = HomeCoordinator()
-		guard let homeCoordinator = homeCoordinator else {
-			// 處理 homeCoordinator 為 nil 的情況
-			print("錯誤：無法創建 HomeCoordinator")
-			return
-		}
+	// 建立並顯示首頁
+	private func showHomeCoordinator() {
+		let homeCoordinator = HomeCoordinator()
+		homeCoordinator.delegate = self
 		add(childController: homeCoordinator)
+		self.homeCoordinator = homeCoordinator
 	}
 }
 
 // MARK: LoginCoordinatorDelegate
 
 extension AppCoordinator: LoginCoordinatorDelegate {
-	func didSelectStatus(_ status: Int) {
-		guard let loginCoordinator = loginCoordinator else {
-			print("警告：loginCoordinator 為 nil")
-			return
-		}
-		remove(childController: loginCoordinator)
-		showHomeCoordinator(with: status)
+	// 處理登入成功的情況
+	func didLogin(_ coordinator: LoginCoordinator) {
+		// 移除 loginCoordinator
+		remove(childController: coordinator)
+		loginCoordinator = nil
+
+		// 顯示首頁
+		showHomeCoordinator()
+	}
+}
+
+// MARK: HomeCoordinatorDelegate
+
+extension AppCoordinator: HomeCoordinatorDelegate {
+	// 處理登出請求
+	func didRequestLogout(_ coordinator: HomeCoordinator) {
+		// 移除 homeCoordinator
+		remove(childController: coordinator)
+		homeCoordinator = nil
+
+		// 顯示登入畫面
+		showLoginCoordinator()
 	}
 }
 

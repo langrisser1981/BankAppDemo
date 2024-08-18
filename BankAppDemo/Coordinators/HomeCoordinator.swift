@@ -9,52 +9,57 @@ import Combine
 import Foundation
 import UIKit
 
+// MARK: - HomeCoordinatorDelegate
+
+protocol HomeCoordinatorDelegate: AnyObject {
+	func didRequestLogout(_ coordinator: HomeCoordinator)
+}
+
 // MARK: - HomeCoordinator
 
 class HomeCoordinator: TabCoordinator {
-	// 添加子協調器的屬性以保持強引用
+	weak var delegate: HomeCoordinatorDelegate?
+
+	// 底下標籤對應的子畫面
 	private var moneyCoordinator: MoneyCoordinator?
 	private var friendsCoordinator: FriendsCoordinator?
 	private var paymentCoordinator: PaymentCoordinator?
 	private var accountingCoordinator: AccountingCoordinator?
 	private var settingsCoordinator: SettingsCoordinator?
 
-	override func setupSubscriptions() {
-		print("開始取得使用者資訊")
-	}
-
 	override func start() {
 		super.start()
 
-		// 初始化子協調器並保存引用
+		// 初始化每個子畫面
 		moneyCoordinator = MoneyCoordinator()
 		friendsCoordinator = FriendsCoordinator()
+		friendsCoordinator?.delegate = self
 		paymentCoordinator = PaymentCoordinator()
 		accountingCoordinator = AccountingCoordinator()
 		settingsCoordinator = SettingsCoordinator()
 
-		// 創建一個包含所有子協調器的陣列
+		// 建立一個包含所有子畫面的陣列
 		let coordinators: [UIViewController] = [
 			moneyCoordinator,
 			friendsCoordinator,
-			UIViewController(), // 因為中央要用自訂按鈕，所以這邊等於是佔位
+			UIViewController(), // 因為中央要用自訂按鈕，所以這裡等於是佔位
 			accountingCoordinator,
 			settingsCoordinator
 		].compactMap { $0 }
 
-		// 設置標籤欄視圖控制器
+		// 設定標籤列對應的子畫面
 		setTabBarViewControllers(coordinators, animated: false)
 
-		// 設置標籤欄外觀
+		// 設定標籤列外觀
 		setupTabBarAppearance()
 
-		// 創建自訂支付按鈕
+		// 建立自訂支付按鈕
 		createCustomPaymentButton()
 
 		// 將朋友頁設為預設的啟動頁面
 		selectTab(at: 1)
 
-		// 設置標籤欄委託
+		// 設定標籤列委派
 		setTabBarDelegate(self)
 	}
 
@@ -79,7 +84,7 @@ class HomeCoordinator: TabCoordinator {
 	}
 
 	private func createCustomPaymentButton() {
-		// 創建容器視圖
+		// 建立容器視圖
 		let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 72, height: 72))
 		containerView.center = CGPoint(x: tabBar.bounds.midX, y: tabBar.bounds.midY - 15)
 
@@ -112,7 +117,7 @@ class HomeCoordinator: TabCoordinator {
 		print("支付按鈕被點擊")
 		// 使用可選綁定來安全地解包 paymentCoordinator
 		if let paymentCoordinator = paymentCoordinator {
-			// 設置委派
+			// 設定委派，回應關閉按鈕被點擊
 			paymentCoordinator.delegate = self
 			// 使用 present 方法顯示支付頁面
 			present(paymentCoordinator)
@@ -128,6 +133,14 @@ extension HomeCoordinator: PaymentCoordinatorDelegate {
 	func paymentCoordinatorDidFinish(_ coordinator: PaymentCoordinator) {
 		// 關閉支付頁面
 		dismiss(animated: true)
+	}
+}
+
+// MARK: FriendsCoordinatorDelegate
+
+extension HomeCoordinator: FriendsCoordinatorDelegate {
+	func didRequestLogout(_ coordinator: FriendsCoordinator) {
+		delegate?.didRequestLogout(self)
 	}
 }
 

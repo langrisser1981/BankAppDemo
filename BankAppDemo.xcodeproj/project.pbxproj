@@ -17,14 +17,13 @@
 		48541B492C70C89A009280C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B482C70C89A009280C2 /* User.swift */; };
 		48541B4B2C70CA86009280C2 /* DataSourceStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B4A2C70CA86009280C2 /* DataSourceStrategy.swift */; };
 		48541B4F2C70CBC7009280C2 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B4E2C70CBC7009280C2 /* APIService.swift */; };
-		48541B512C7113A6009280C2 /* FriendsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B502C7113A6009280C2 /* FriendsCoordinatorTests.swift */; };
-		48541B532C711701009280C2 /* FriendsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B522C711701009280C2 /* FriendsListViewModelTests.swift */; };
+		48541B582C720F33009280C2 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B572C720F33009280C2 /* UIButton+Extension.swift */; };
+		48541B5A2C72201F009280C2 /* FriendsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48541B592C72201F009280C2 /* FriendsViewModelTests.swift */; };
 		48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734B2C6EF87A00795C41 /* AppDelegate.swift */; };
 		48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */; };
 		48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0734F2C6EF87A00795C41 /* AppCoordinator.swift */; };
 		48A073552C6EF87B00795C41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A073542C6EF87B00795C41 /* Assets.xcassets */; };
 		48A073582C6EF87B00795C41 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 48A073572C6EF87B00795C41 /* Base */; };
-		48A073632C6EF87B00795C41 /* BankAppDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073622C6EF87B00795C41 /* BankAppDemoTests.swift */; };
 		48A0736D2C6EF87B00795C41 /* BankAppDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0736C2C6EF87B00795C41 /* BankAppDemoUITests.swift */; };
 		48A0736F2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A0736E2C6EF87B00795C41 /* BankAppDemoUITestsLaunchTests.swift */; };
 		48A0738D2C6F225600795C41 /* friend1.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A073882C6F225600795C41 /* friend1.json */; };
@@ -34,11 +33,9 @@
 		48A073912C6F225600795C41 /* friend4.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A0738C2C6F225600795C41 /* friend4.json */; };
 		48A073932C6F230000795C41 /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A073922C6F230000795C41 /* Color+Additions.swift */; };
 		48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */; };
-		48CD5CF82C6FA91200EC63EF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */; };
-		48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CF92C6FA94700EC63EF /* FriendsService.swift */; };
-		48CD5D012C6FAB5C00EC63EF /* FriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CFF2C6FAB5C00EC63EF /* FriendsListViewModel.swift */; };
+		48CD5D012C6FAB5C00EC63EF /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5CFF2C6FAB5C00EC63EF /* FriendsViewModel.swift */; };
 		48CD5D022C6FAB5C00EC63EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D002C6FAB5C00EC63EF /* LoginViewModel.swift */; };
-		48CD5D052C6FAB6700EC63EF /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */; };
+		48CD5D052C6FAB6700EC63EF /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D032C6FAB6700EC63EF /* FriendsViewController.swift */; };
 		48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */; };
 		48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D072C6FAB7300EC63EF /* Friend.swift */; };
 		48CD5D0B2C703A4500EC63EF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 48CD5D0A2C703A4500EC63EF /* SnapKit */; };
@@ -77,9 +74,9 @@
 		48541B482C70C89A009280C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48541B4A2C70CA86009280C2 /* DataSourceStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceStrategy.swift; sourceTree = "<group>"; };
 		48541B4E2C70CBC7009280C2 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		48541B502C7113A6009280C2 /* FriendsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCoordinatorTests.swift; sourceTree = "<group>"; };
-		48541B522C711701009280C2 /* FriendsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewModelTests.swift; sourceTree = "<group>"; };
 		48541B542C71190E009280C2 /* BankAppDemo.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BankAppDemo.xctestplan; sourceTree = "<group>"; };
+		48541B572C720F33009280C2 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		48541B592C72201F009280C2 /* FriendsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModelTests.swift; sourceTree = "<group>"; };
 		48A073482C6EF87A00795C41 /* BankAppDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankAppDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0734B2C6EF87A00795C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48A0734D2C6EF87A00795C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,11 +96,9 @@
 		48A0738C2C6F225600795C41 /* friend4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = friend4.json; sourceTree = "<group>"; };
 		48A073922C6F230000795C41 /* Color+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
 		48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		48CD5CF92C6FA94700EC63EF /* FriendsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsService.swift; sourceTree = "<group>"; };
-		48CD5CFF2C6FAB5C00EC63EF /* FriendsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewModel.swift; sourceTree = "<group>"; };
+		48CD5CFF2C6FAB5C00EC63EF /* FriendsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		48CD5D002C6FAB5C00EC63EF /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
+		48CD5D032C6FAB6700EC63EF /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48CD5D072C6FAB7300EC63EF /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
@@ -182,8 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				48A073622C6EF87B00795C41 /* BankAppDemoTests.swift */,
-				48541B502C7113A6009280C2 /* FriendsCoordinatorTests.swift */,
-				48541B522C711701009280C2 /* FriendsListViewModelTests.swift */,
+				48541B592C72201F009280C2 /* FriendsViewModelTests.swift */,
 			);
 			path = BankAppDemoTests;
 			sourceTree = "<group>";
@@ -213,8 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				48541B4E2C70CBC7009280C2 /* APIService.swift */,
-				48CD5CF72C6FA91200EC63EF /* AuthenticationService.swift */,
-				48CD5CF92C6FA94700EC63EF /* FriendsService.swift */,
 				48A073882C6F225600795C41 /* friend1.json */,
 				48A0738A2C6F225600795C41 /* friend2.json */,
 				48A073892C6F225600795C41 /* friend3.json */,
@@ -237,8 +229,9 @@
 			isa = PBXGroup;
 			children = (
 				48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */,
-				48CD5D032C6FAB6700EC63EF /* FriendsListViewController.swift */,
+				48CD5D032C6FAB6700EC63EF /* FriendsViewController.swift */,
 				48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */,
+				48541B572C720F33009280C2 /* UIButton+Extension.swift */,
 				48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */,
 			);
 			path = Views;
@@ -248,7 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				48CD5D002C6FAB5C00EC63EF /* LoginViewModel.swift */,
-				48CD5CFF2C6FAB5C00EC63EF /* FriendsListViewModel.swift */,
+				48CD5CFF2C6FAB5C00EC63EF /* FriendsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -459,7 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48CD5D052C6FAB6700EC63EF /* FriendsListViewController.swift in Sources */,
+				48CD5D052C6FAB6700EC63EF /* FriendsViewController.swift in Sources */,
 				4836BE5F2C6F409F00D0E84D /* TabCoordinator.swift in Sources */,
 				48CD5D142C705EFE00EC63EF /* PaymentCoordinator.swift in Sources */,
 				48CD5D102C70543000EC63EF /* MockCoordinators.swift in Sources */,
@@ -469,11 +462,9 @@
 				48541B4B2C70CA86009280C2 /* DataSourceStrategy.swift in Sources */,
 				48CD5D0D2C70465300EC63EF /* UIStackView+Extension.swift in Sources */,
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
-				48CD5D012C6FAB5C00EC63EF /* FriendsListViewModel.swift in Sources */,
-				48CD5CF82C6FA91200EC63EF /* AuthenticationService.swift in Sources */,
+				48CD5D012C6FAB5C00EC63EF /* FriendsViewModel.swift in Sources */,
 				48CD5D022C6FAB5C00EC63EF /* LoginViewModel.swift in Sources */,
 				4836BE5D2C6F407E00D0E84D /* NavigationCoordinator.swift in Sources */,
-				48CD5CFA2C6FA94700EC63EF /* FriendsService.swift in Sources */,
 				48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */,
 				48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */,
 				48CD5D162C705F9E00EC63EF /* PaymentViewController.swift in Sources */,
@@ -482,6 +473,7 @@
 				48A0734E2C6EF87A00795C41 /* SceneDelegate.swift in Sources */,
 				4836BE592C6F32F200D0E84D /* Coordinator.swift in Sources */,
 				48541B4F2C70CBC7009280C2 /* APIService.swift in Sources */,
+				48541B582C720F33009280C2 /* UIButton+Extension.swift in Sources */,
 				48541B492C70C89A009280C2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,9 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48541B512C7113A6009280C2 /* FriendsCoordinatorTests.swift in Sources */,
-				48A073632C6EF87B00795C41 /* BankAppDemoTests.swift in Sources */,
-				48541B532C711701009280C2 /* FriendsListViewModelTests.swift in Sources */,
+				48541B5A2C72201F009280C2 /* FriendsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

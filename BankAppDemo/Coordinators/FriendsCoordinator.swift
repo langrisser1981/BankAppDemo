@@ -5,45 +5,73 @@
 //  Created by 程信傑 on 2024/8/17.
 //
 
+import Combine
 import Foundation
 import UIKit
 
+// MARK: - FriendsCoordinatorDelegate
+
+protocol FriendsCoordinatorDelegate: AnyObject {
+	func didRequestLogout(_ coordinator: FriendsCoordinator)
+}
+
+// MARK: - FriendsCoordinator
+
 class FriendsCoordinator: Coordinator {
-	var viewModel: FriendsListViewModel!
-	private var friendsListViewController: FriendsListViewController!
-    
-	override func start() {
-		let status = UserDefaults.standard.integer(forKey: UserDefaultsKeys.userStatus)
-		setupViewModel(for: status)
-        
-		friendsListViewController = FriendsListViewController()
-		friendsListViewController.viewModel = viewModel
-		add(childController: friendsListViewController)
-        
-		// 開始獲取朋友列表
-		fetchFriendsList()
+	weak var delegate: FriendsCoordinatorDelegate?
+	private let viewModel: FriendsViewModel
+	private var friendsViewController: FriendsViewController!
+
+	override init() {
+		viewModel = FriendsViewModel()
+		super.init()
 	}
-    
-	private func setupViewModel(for status: Int) {
-		// 根據狀態創建適當的數據源
-		let dataSources: [DataSourceStrategy]
+
+	override func start() {
+		// 初始化 ViewController
+		friendsViewController = FriendsViewController(viewModel: viewModel)
+		friendsViewController.delegate = self
+		add(childController: friendsViewController)
+
+		fetchFriendsBasedOnUserStatus()
+	}
+
+	/// 根據使用者狀態取得朋友列表
+	private func fetchFriendsBasedOnUserStatus() {
+		let status = UserDefaults.standard.integer(forKey: UserDefaultsKeys.userStatus)
+		let dataSources = getDataSourcesForStatus(status)
+		viewModel.fetchFriends(from: dataSources)
+	}
+
+	/// 根據狀態取得對應的資料來源
+	/// - Parameter status: 想要呼叫的後端類型
+	/// - Returns: 對應的資料來源陣列
+	func getDataSourcesForStatus(_ status: Int) -> [APIDataSource] {
+		let endpoints: [APIService.APIEndpoint]
+
 		switch status {
 		case 1:
-			dataSources = [APIDataSource(endpoint: .noFriends)]
+			endpoints = [.noFriends]
 		case 2:
-			dataSources = [APIDataSource(endpoint: .friend1), APIDataSource(endpoint: .friend2)]
+			endpoints = [.friend1, .friend2]
 		case 3:
-			dataSources = [APIDataSource(endpoint: .friendWithInvites)]
+			endpoints = [.friendWithInvites]
 		default:
-			fatalError("無效的狀態")
+			endpoints = []
 		}
-        
-		// 使用數據源創建 ViewModel
-		viewModel = FriendsListViewModel(dataSources: dataSources)
+
+		return endpoints.map { APIDataSource(endpoint: $0) }
 	}
-    
-	private func fetchFriendsList() {
-		// 調用 ViewModel 的方法來獲取朋友列表
-		viewModel.fetchAndCombineFriendsList()
+}
+
+// MARK: FriendsViewControllerDelegate
+
+extension FriendsCoordinator: FriendsViewControllerDelegate {
+	func didRequestLogout(_ viewController: FriendsViewController) {
+		delegate?.didRequestLogout(self)
+	}
+
+	func didRequestRefresh(_ viewController: FriendsViewController) {
+		fetchFriendsBasedOnUserStatus()
 	}
 }
