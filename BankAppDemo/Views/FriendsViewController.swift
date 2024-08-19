@@ -34,47 +34,6 @@ class FriendsViewController: UIViewController {
 
 	private var cancellables = Set<AnyCancellable>()
 
-	// 定義 diffable data source 類型
-	private typealias DataSource = UITableViewDiffableDataSource<Section, Friend>
-	private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Friend>
-
-	// 定義表格的區段
-	private enum Section {
-		case main
-	}
-
-	// 延遲初始化表格視圖
-	private lazy var tableView: UITableView = {
-		let tableView = UITableView()
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FriendCell")
-		return tableView
-	}()
-
-	// 延遲初始化搜尋列
-	private lazy var searchBar: UISearchBar = {
-		let searchBar = UISearchBar()
-		searchBar.placeholder = "搜尋朋友"
-		searchBar.delegate = self
-		return searchBar
-	}()
-
-	// 資料來源屬性
-	private var dataSource: DataSource!
-
-	// 添加登出按鈕
-	private lazy var logoutButton: UIButton = {
-		let button = UIButton.createCustomButton(title: "登出", tag: 0)
-		button.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
-		return button
-	}()
-
-	// 添加重新整理控制
-	private lazy var refreshControl: UIRefreshControl = {
-		let refreshControl = UIRefreshControl()
-		refreshControl.addTarget(self, action: #selector(refreshFriendsList), for: .valueChanged)
-		return refreshControl
-	}()
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
@@ -82,13 +41,22 @@ class FriendsViewController: UIViewController {
 		bindViewModel()
 	}
 
-	// 設置 UI 元素
+	// 設定畫面元件與排版
 	private func setupUI() {
+		// 新增元件到畫面
+		view.addSubview(userInfoStackView)
 		view.addSubview(searchBar)
 		view.addSubview(tableView)
 
+		// 排版
+		userInfoStackView.snp.makeConstraints { make in
+			make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+			make.left.right.equalToSuperview().inset(20)
+			make.height.equalTo(44)
+		}
+
 		searchBar.snp.makeConstraints { make in
-			make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+			make.top.equalTo(userInfoStackView.snp.bottom).offset(20)
 			make.left.right.equalToSuperview()
 		}
 
@@ -97,10 +65,12 @@ class FriendsViewController: UIViewController {
 			make.left.right.bottom.equalToSuperview()
 		}
 		tableView.refreshControl = refreshControl
+
+		// 右上角新增一個登出按鈕
 		setupLogoutButton()
 	}
 
-	// 配置 diffable data source
+	// 設定 diffable data source
 	private func configureDataSource() {
 		dataSource = DataSource(tableView: tableView) { tableView, indexPath, friend -> UITableViewCell? in
 			let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
@@ -109,8 +79,9 @@ class FriendsViewController: UIViewController {
 		}
 	}
 
-	// 綁定 ViewModel
+	// 綁定 ViewModel，訂閱使用者資料與朋友清單
 	private func bindViewModel() {
+		// 使用者資料
 		viewModel.$user
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] user in
@@ -119,6 +90,8 @@ class FriendsViewController: UIViewController {
 				}
 			}
 			.store(in: &cancellables)
+
+		// 朋友清單
 		viewModel.$filteredFriends
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] friends in
@@ -130,10 +103,16 @@ class FriendsViewController: UIViewController {
 
 	// 更新 UI 以顯示使用者資料
 	private func updateUIWithUserData() {
-		// 更新 UI 以顯示使用者資料
+		if let user = viewModel.user {
+			let nameLabel = userInfoStackView.arrangedSubviews[0] as? UILabel
+			let kokoidLabel = userInfoStackView.arrangedSubviews[1] as? UILabel
+
+			nameLabel?.text = "名稱：\(user.name)"
+			kokoidLabel?.text = "KoKo ID：\(user.kokoid)"
+		}
 	}
 
-	// 用新的快照到資料來源
+	// 當朋友清單資料更新時，套用新的快照到資料來源
 	private func applySnapshot(with friends: [Friend]) {
 		var snapshot = Snapshot()
 		snapshot.appendSections([.main])
@@ -151,18 +130,87 @@ class FriendsViewController: UIViewController {
 		}
 	}
 
+	// 登出按鈕被按下
 	@objc private func logoutButtonTapped() {
 		delegate?.didRequestLogout(self)
 	}
 
+	// 觸發下拉列表更新資料
 	@objc private func refreshFriendsList() {
 		delegate?.didRequestRefresh(self)
 	}
+
+	// MARK: - 下面是表格相關的設定
+
+	// 定義 diffable data source 類型，支援顯示朋友的資料，包含是否優先顯示，個人圖像，名稱
+	private typealias DataSource = UITableViewDiffableDataSource<Section, Friend>
+	private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Friend>
+	// 定義朋友清單的區段
+	private enum Section {
+		case main
+	}
+
+	// 代表朋友清單的資料來源
+	private var dataSource: DataSource!
+
+	// MARK: - 下面是元件建立的相關程式碼
+
+	// 朋友清單
+	private lazy var tableView: UITableView = {
+		let tableView = UITableView()
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "FriendCell")
+		return tableView
+	}()
+
+	// 搜尋列，用來根據姓名過濾朋友列表
+	private lazy var searchBar: UISearchBar = {
+		let searchBar = UISearchBar()
+		searchBar.placeholder = "想轉一筆給誰呢?"
+		searchBar.delegate = self
+		return searchBar
+	}()
+
+	// 登出按鈕，用來模擬回到首頁，方便重選要打哪個後端
+	private lazy var logoutButton: UIButton = {
+		let button = UIButton.createCustomButton(title: "登出", tag: 0)
+		button.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+		return button
+	}()
+
+	// 重新整理控制，下拉會根據目前選擇的後端，重新抓取一次朋友清單
+	private lazy var refreshControl: UIRefreshControl = {
+		let refreshControl = UIRefreshControl()
+		refreshControl.addTarget(self, action: #selector(refreshFriendsList), for: .valueChanged)
+		return refreshControl
+	}()
+
+	// 使用者資料區塊，會訂閱資料模型，顯示現在的使用者名稱與kokoID
+	private lazy var userInfoStackView: UIStackView = {
+		let nameLabel = UILabel()
+		nameLabel.font = .systemFont(ofSize: 16, weight: .medium)
+
+		let kokoidLabel = UILabel()
+		kokoidLabel.font = .systemFont(ofSize: 14, weight: .regular)
+
+		let stackView = UIStackView.create(
+			arrangedSubviews: [nameLabel, kokoidLabel],
+			axis: .horizontal,
+			spacing: 10,
+			alignment: .center,
+			distribution: .fillEqually
+		)
+		stackView.backgroundColor = .systemGray6
+		stackView.layer.cornerRadius = 8
+		stackView.isLayoutMarginsRelativeArrangement = true
+		stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+		return stackView
+	}()
 }
 
 // MARK: UISearchBarDelegate
 
 extension FriendsViewController: UISearchBarDelegate {
+	// 搜尋列的委派方法，用來根據姓名過濾朋友列表
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		viewModel.filterFriends(with: searchText)
 	}
