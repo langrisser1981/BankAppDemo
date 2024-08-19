@@ -69,6 +69,20 @@ class FriendsViewController: UIViewController {
 
 		// 右上角新增一個登出按鈕
 		setupLogoutButton()
+
+		let label = UILabel.createWithBubble(text: "Your Text", bubbleNumber: 5)
+		view.addSubview(label)
+
+		label.snp.makeConstraints { make in
+			make.center.equalToSuperview()
+			make.width.equalTo(150)
+			make.height.equalTo(40)
+		}
+
+		// 更新泡泡中的数字
+		label.setBubbleNumber(10) // 将泡泡内的数字设置为10
+		label.setBubbleNumber(0) // 将数字设置为0时，泡泡将隐藏
+		label.setBubbleNumber(150) // 将泡泡内的数字设置为 150, 泡泡将显示 "99+"
 	}
 
 	// 設定 diffable data source

@@ -8,6 +8,11 @@
 import UIKit
 
 extension UIButton {
+	/// 建立一個自訂的 UIButton
+	/// - Parameters:
+	///   - title: 按鈕的標題
+	///   - tag: 按鈕的標籤值
+	/// - Returns: 配置好的 UIButton
 	static func createCustomButton(title: String, tag: Int) -> UIButton {
 		let button = UIButton(type: .system)
 		button.setTitle(title, for: .normal)

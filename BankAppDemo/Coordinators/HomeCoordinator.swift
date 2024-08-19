@@ -31,32 +31,14 @@ class HomeCoordinator: TabCoordinator {
 		super.start()
 
 		// 初始化每個子畫面
-		moneyCoordinator = MockCoordinator(screenTitle: "錢錢")
-		moneyCoordinator?.configureTabBarItem(title: "錢錢", image: UIImage(named: "icTabbarProductsOff"), tag: 0)
-		friendsCoordinator = FriendsCoordinator()
-		friendsCoordinator?.configureTabBarItem(title: "朋友", image: UIImage(named: "icTabbarFriendsOn"), tag: 1)
-		friendsCoordinator?.delegate = self
-		paymentCoordinator = PaymentCoordinator()
-		accountingCoordinator = MockCoordinator(screenTitle: "記帳")
-		accountingCoordinator?.configureTabBarItem(title: "記帳", image: UIImage(named: "icTabbarManageOff"), tag: 3)
-		settingsCoordinator = MockCoordinator(screenTitle: "設定")
-		settingsCoordinator?.configureTabBarItem(title: "設定", image: UIImage(named: "icTabbarSettingOff"), tag: 4)
-		let emptyVC = UIViewController()
-		let emptyImage = UIImage()
-		emptyVC.configureTabBarItem(title: "emptyVC", image: UIImage(named: "emptyVC"), tag: 2)
+		setupCoordinators()
 
 		// 建立一個包含所有子畫面的陣列
-		let coordinators: [UIViewController] = [
-			moneyCoordinator,
-			friendsCoordinator,
-			emptyVC, // 因為中央要用自訂按鈕，所以這裡等於是佔位
-			accountingCoordinator,
-			settingsCoordinator
-		].compactMap { $0 }
+		let coordinators = getCoordinators()
 
 		// 設定標籤列對應的子畫面
 		setTabBarViewControllers(coordinators, animated: false)
-		tabBar.items?[2].isEnabled = false
+		// tabBar.items?[2].isEnabled = false
 
 		// 設定標籤列外觀
 		setupTabBarAppearance()
@@ -71,21 +53,44 @@ class HomeCoordinator: TabCoordinator {
 		setTabBarDelegate(self)
 	}
 
+	private func setupCoordinators() {
+		moneyCoordinator = MockCoordinator(screenTitle: "錢錢")
+		moneyCoordinator?.configureTabBarItem(title: "錢錢", image: UIImage(named: "icTabbarProductsOff"), tag: 0)
+
+		friendsCoordinator = FriendsCoordinator()
+		friendsCoordinator?.configureTabBarItem(title: "朋友", image: UIImage(named: "icTabbarFriendsOn"), tag: 1)
+		friendsCoordinator?.delegate = self
+
+		paymentCoordinator = PaymentCoordinator()
+
+		accountingCoordinator = MockCoordinator(screenTitle: "記帳")
+		accountingCoordinator?.configureTabBarItem(title: "記帳", image: UIImage(named: "icTabbarManageOff"), tag: 3)
+
+		settingsCoordinator = MockCoordinator(screenTitle: "設定")
+		settingsCoordinator?.configureTabBarItem(title: "設定", image: UIImage(named: "icTabbarSettingOff"), tag: 4)
+	}
+
+	private func getCoordinators() -> [UIViewController] {
+		let emptyVC = UIViewController()
+		emptyVC.configureTabBarItem(title: "emptyVC", image: UIImage(named: "emptyVC"), tag: 2)
+
+		return [
+			moneyCoordinator,
+			friendsCoordinator,
+			emptyVC, // 因為中央要用自訂按鈕，所以這裡等於是佔位
+			accountingCoordinator,
+			settingsCoordinator
+		].compactMap { $0 }
+	}
+
 	private func setupTabBarAppearance() {
 		let appearance = UITabBarAppearance()
 		appearance.configureWithOpaqueBackground()
-		// appearance.backgroundColor = .neutralWhite
-
 		// 移除陰影底線
-		appearance.shadowColor = .clear
-
-		tabBar.standardAppearance = appearance
-		if #available(iOS 15.0, *) {
-			tabBar.scrollEdgeAppearance = appearance
-		}
-
-		tabBar.backgroundImage = UIImage(named: "imgTabbarBg")?.withRenderingMode(.alwaysOriginal)
-		tabBar.isTranslucent = true
+		// appearance.shadowColor = .clear
+		tabBar.scrollEdgeAppearance = appearance
+		// tabBar.backgroundImage = UIImage(named: "imgTabbarBg")?.withRenderingMode(.alwaysOriginal)
+		// tabBar.isTranslucent = true
 
 		// 設定標籤列陰影
 		// tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -103,25 +108,14 @@ class HomeCoordinator: TabCoordinator {
 		let customPaymentButton = UIButton(type: .custom)
 		customPaymentButton.frame = containerView.bounds
 		customPaymentButton.setImage(UIImage(named: "icTabbarHomeOff"), for: .normal)
-		customPaymentButton.adjustsImageWhenHighlighted = false // 點擊按鈕時圖片不要高亮
 		customPaymentButton.configuration?.automaticallyUpdateForSelection = false
-		// customPaymentButton.layer.cornerRadius = 36
-		// customPaymentButton.layer.borderColor = UIColor.neutralWhite.cgColor
-		// customPaymentButton.layer.borderWidth = 5
 		// 將按鈕裁切成圓形
 		customPaymentButton.clipsToBounds = true
 		customPaymentButton.layer.cornerRadius = 34
 
-		// 自訂標籤文字
-		let label = UILabel()
-		label.text = "收款碼"
-		// label.font = EMFontStyle.pingFangMediumWithSize12.value
-		label.textColor = .white
-		label.sizeToFit()
-		label.center = CGPoint(x: containerView.bounds.midX, y: containerView.bounds.maxY + 10)
+		customPaymentButton.addTarget(self, action: #selector(didTapPaymentButton), for: .touchUpInside)
 
 		containerView.addSubview(customPaymentButton)
-		// containerView.addSubview(label)
 		tabBar.addSubview(containerView)
 	}
 
