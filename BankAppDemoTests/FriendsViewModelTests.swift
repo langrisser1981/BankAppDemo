@@ -29,12 +29,17 @@ class FriendsViewModelTests: XCTestCase {
 		viewModel.fetchFriends(from: [dataSource])
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			XCTAssertEqual(self.viewModel.combinedFriends.count, 5)
-			XCTAssertEqual(self.viewModel.filteredFriends.count, 5)
+			XCTAssertEqual(self.viewModel.combinedFriends.count, 3)
+			XCTAssertEqual(self.viewModel.filteredFriends.count, 3)
+			XCTAssertEqual(self.viewModel.receivedInvitations.count, 2)
             
-			// 檢查特定朋友是否存在
-			let expectedFriend = Friend(name: "黃靖僑", status: 0, isTop: false, fid: "001", updateDate: "20190801")
+			// 檢查特定朋友是否存在於 combinedFriends
+			let expectedFriend = Friend(name: "洪佳妤", status: 1, isTop: false, fid: "003", updateDate: "20190804")
 			XCTAssertTrue(self.viewModel.combinedFriends.contains { $0.fid == expectedFriend.fid }, "朋友列表應包含特定朋友")
+            
+			// 檢查特定邀請是否存在於 receivedInvitations
+			let expectedInvitation = Friend(name: "黃靖僑", status: 0, isTop: false, fid: "001", updateDate: "20190801")
+			XCTAssertTrue(self.viewModel.receivedInvitations.contains { $0.fid == expectedInvitation.fid }, "邀請列表應包含特定邀請")
             
 			expectation.fulfill()
 		}
@@ -53,10 +58,15 @@ class FriendsViewModelTests: XCTestCase {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			XCTAssertEqual(self.viewModel.combinedFriends.count, 6)
 			XCTAssertEqual(self.viewModel.filteredFriends.count, 6)
+			XCTAssertEqual(self.viewModel.receivedInvitations.count, 0, "邀請清單應為空")
             
 			// 檢查特定朋友是否存在（來自第二個資料源）
 			let expectedFriend = Friend(name: "林宜真", status: 1, isTop: false, fid: "012", updateDate: "2019/08/01")
 			XCTAssertTrue(self.viewModel.combinedFriends.contains { $0.fid == expectedFriend.fid }, "朋友列表應包含來自第二個資料源的特定朋友")
+            
+			// 檢查特定邀請是否不存在
+			let unexpectedInvitation = Friend(name: "黃靖僑", status: 0, isTop: false, fid: "001", updateDate: "20190801")
+			XCTAssertFalse(self.viewModel.receivedInvitations.contains { $0.fid == unexpectedInvitation.fid }, "邀請清單不應包含黃靖僑")
             
 			expectation.fulfill()
 		}
@@ -74,6 +84,7 @@ class FriendsViewModelTests: XCTestCase {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			XCTAssertEqual(self.viewModel.combinedFriends.count, 0)
 			XCTAssertEqual(self.viewModel.filteredFriends.count, 0)
+			XCTAssertEqual(self.viewModel.receivedInvitations.count, 0)
 			expectation.fulfill()
 		}
         
@@ -89,14 +100,16 @@ class FriendsViewModelTests: XCTestCase {
         
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			self.viewModel.filterFriends(with: "黃")
-			XCTAssertEqual(self.viewModel.filteredFriends.count, 1)
+			XCTAssertEqual(self.viewModel.filteredFriends.count, 0)
+			XCTAssertEqual(self.viewModel.receivedInvitations.count, 1)
             
 			// 檢查過濾後的朋友是否正確
 			let expectedFriend = Friend(name: "黃靖僑", status: 0, isTop: false, fid: "001", updateDate: "20190801")
-			XCTAssertTrue(self.viewModel.filteredFriends.contains { $0.fid == expectedFriend.fid }, "過濾後的朋友列表應包含特定朋友")
+			XCTAssertTrue(self.viewModel.receivedInvitations.contains { $0.fid == expectedFriend.fid }, "過濾後的邀請列表應包含特定朋友")
             
 			self.viewModel.filterFriends(with: "")
-			XCTAssertEqual(self.viewModel.filteredFriends.count, 5)
+			XCTAssertEqual(self.viewModel.filteredFriends.count, 4)
+			XCTAssertEqual(self.viewModel.receivedInvitations.count, 1)
             
 			expectation.fulfill()
 		}
