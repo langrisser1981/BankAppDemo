@@ -64,7 +64,8 @@ class FriendsViewController: UIViewController {
 			make.top.equalTo(searchBar.snp.bottom)
 			make.left.right.bottom.equalToSuperview()
 		}
-		tableView.refreshControl = refreshControl
+		// tableView.refreshControl = refreshControl
+		tableView.addSubview(refreshControl)
 
 		// 右上角新增一個登出按鈕
 		setupLogoutButton()
@@ -96,7 +97,6 @@ class FriendsViewController: UIViewController {
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] friends in
 				self?.applySnapshot(with: friends)
-				self?.refreshControl.endRefreshing()
 			}
 			.store(in: &cancellables)
 	}
@@ -117,7 +117,9 @@ class FriendsViewController: UIViewController {
 		var snapshot = Snapshot()
 		snapshot.appendSections([.main])
 		snapshot.appendItems(friends)
-		dataSource.apply(snapshot, animatingDifferences: true)
+		dataSource.apply(snapshot, animatingDifferences: true) {
+			self.refreshControl.endRefreshing()
+		}
 	}
 
 	private func setupLogoutButton() {
@@ -180,6 +182,7 @@ class FriendsViewController: UIViewController {
 	// 重新整理控制，下拉會根據目前選擇的後端，重新抓取一次朋友清單
 	private lazy var refreshControl: UIRefreshControl = {
 		let refreshControl = UIRefreshControl()
+		// refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
 		refreshControl.addTarget(self, action: #selector(refreshFriendsList), for: .valueChanged)
 		return refreshControl
 	}()
