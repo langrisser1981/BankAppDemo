@@ -22,8 +22,8 @@ class FriendsCoordinator: Coordinator {
 	private let viewModel: FriendsViewModel
 	private var friendsViewController: FriendsViewController!
 
-	override init() {
-		viewModel = FriendsViewModel()
+	init(viewModel: FriendsViewModel = FriendsViewModel()) {
+		self.viewModel = viewModel
 		super.init()
 	}
 

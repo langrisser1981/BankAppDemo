@@ -27,7 +27,7 @@ class FriendsViewModelTests: XCTestCase {
         
 		let dataSource = LocalDataSource(localFileName: "friend3")
 		viewModel.fetchFriends(from: [dataSource])
-        
+
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			XCTAssertEqual(self.viewModel.combinedFriends.count, 5)
 			XCTAssertEqual(self.viewModel.filteredFriends.count, 5)

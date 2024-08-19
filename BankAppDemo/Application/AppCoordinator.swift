@@ -15,11 +15,21 @@ class AppCoordinator: Coordinator {
 
 	override func start() {
 		// 應用程式啟動時顯示登入畫面
-		showLoginCoordinator()
+		showMainScreen()
+	}
+
+	private func showMainScreen() {
+		if UserSession.shared.userData != nil {
+			// 使用者已登入，顯示首頁
+			showHomeScreen()
+		} else {
+			// 使用者未登入，顯示登入畫面
+			showLoginScreen()
+		}
 	}
 
 	// 建立並顯示登入畫面
-	private func showLoginCoordinator() {
+	private func showLoginScreen() {
 		let loginCoordinator = LoginCoordinator()
 		loginCoordinator.delegate = self
 		add(childController: loginCoordinator)
@@ -27,7 +37,7 @@ class AppCoordinator: Coordinator {
 	}
 
 	// 建立並顯示首頁
-	private func showHomeCoordinator() {
+	private func showHomeScreen() {
 		let homeCoordinator = HomeCoordinator()
 		homeCoordinator.delegate = self
 		add(childController: homeCoordinator)
@@ -45,7 +55,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 		loginCoordinator = nil
 
 		// 顯示首頁
-		showHomeCoordinator()
+		showHomeScreen()
 	}
 }
 
@@ -59,7 +69,7 @@ extension AppCoordinator: HomeCoordinatorDelegate {
 		homeCoordinator = nil
 
 		// 顯示登入畫面
-		showLoginCoordinator()
+		showLoginScreen()
 	}
 }
 

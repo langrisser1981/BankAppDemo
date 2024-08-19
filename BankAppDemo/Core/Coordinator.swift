@@ -14,7 +14,7 @@ class Coordinator: UIViewController {
 	var cancellables = Set<AnyCancellable>()
 
 	// 使用者需要複寫底下兩個函式，用來處理資料訂閱，與元件顯示
-	func setupSubscriptions() {}
+	func bindViewModel() {}
 	func start() { fatalError("Children should implement `start`.") }
 
 	// MARK: Lifecycle
@@ -29,13 +29,13 @@ class Coordinator: UIViewController {
 	}
 
 	deinit {
-		removeSubscriptions()
+		unbindViewModel()
 		print("\(className): 已被釋放")
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupSubscriptions()
+		bindViewModel()
 		start()
 	}
 
@@ -57,7 +57,7 @@ class Coordinator: UIViewController {
 		print("\(className): 已從畫面被移除")
 	}
 
-	func removeSubscriptions() {
+	func unbindViewModel() {
 		cancellables.removeAll()
 	}
 }

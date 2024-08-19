@@ -35,6 +35,7 @@ BankAppDemo/
 ├── Models/
 │   └── User.swift
 │   └── Friend.swift
+│   └── UserSession.swift
 │
 ├── Services/
 │   ├── APIService.swift
@@ -50,5 +51,10 @@ BankAppDemo/
     └── Info.plist
     └── BankAppDemo.xctestplan
     └── LaunchScreen.storyboard
+
+BankAppDemoTests/
+│
+├── LoginCoordinatorTests.swift
+├── FriendsViewModelTests.swift
 
 ```

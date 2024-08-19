@@ -8,12 +8,23 @@
 import Combine
 import Foundation
 
-class FriendsViewModel {
+class FriendsViewModel: ObservableObject {
 	@Published private(set) var user: User? // 儲存使用者資訊
 	@Published private(set) var combinedFriends: [Friend] = [] // 儲存所有好友
 	@Published private(set) var filteredFriends: [Friend] = [] // 儲存過濾後的好友
 
 	private var cancellables = Set<AnyCancellable>()
+
+	init() {
+		bindViewModel()
+	}
+
+	private func bindViewModel() {
+		UserSession.shared.$userData
+			.compactMap { $0 }
+			.assign(to: \.user, on: self)
+			.store(in: &cancellables)
+	}
 
 	/// 取得朋友列表
 	/// - Parameter dataSources: 資料來源陣列

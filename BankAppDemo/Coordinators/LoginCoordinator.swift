@@ -19,11 +19,11 @@ protocol LoginCoordinatorDelegate: AnyObject {
 
 class LoginCoordinator: Coordinator {
 	weak var delegate: LoginCoordinatorDelegate?
-	private let viewModel: LoginViewModel
+	private let viewModel: LoginViewModelProtocol
 	private var loginViewController: LoginViewController!
 
-	override init() {
-		viewModel = LoginViewModel()
+	init(viewModel: LoginViewModelProtocol = LoginViewModel()) {
+		self.viewModel = viewModel
 		super.init()
 	}
 
@@ -34,9 +34,9 @@ class LoginCoordinator: Coordinator {
 		add(childController: loginViewController)
 	}
 
-	override func setupSubscriptions() {
+	override func bindViewModel() {
 		// 監聽登入狀態變化
-		viewModel.$isLoggedIn
+		viewModel.isLoggedInPublisher
 			.filter { $0 }
 			.sink { [weak self] _ in
 				self?.handleLoginCompleted()
@@ -58,6 +58,6 @@ extension LoginCoordinator: LoginViewControllerDelegate {
 		UserDefaults.standard.set(status, forKey: UserDefaultsKeys.userStatus)
 
 		// 取得使用者資料
-		viewModel.fetchUserData()
+		viewModel.fetchUserData(from: APIDataSource(endpoint: .user))
 	}
 }

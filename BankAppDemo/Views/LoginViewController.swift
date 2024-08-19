@@ -19,9 +19,9 @@ protocol LoginViewControllerDelegate: AnyObject {
 
 class LoginViewController: UIViewController {
 	weak var delegate: LoginViewControllerDelegate?
-	private let viewModel: LoginViewModel
+	private let viewModel: LoginViewModelProtocol
 
-	init(viewModel: LoginViewModel) {
+	init(viewModel: LoginViewModelProtocol) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
 	}
 
 	private func bindViewModel() {
-		viewModel.$user
+		viewModel.userPublisher
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] user in
 				if user != nil {

@@ -44,6 +44,8 @@
 		48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */; };
 		48CD5D142C705EFE00EC63EF /* PaymentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */; };
 		48CD5D162C705F9E00EC63EF /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */; };
+		48FC87F32C72DAAE0001F7C8 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC87F22C72DAAE0001F7C8 /* UserSession.swift */; };
+		48FC87F52C72EFF60001F7C8 /* LoginCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC87F42C72EFF60001F7C8 /* LoginCoordinatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCoordinator.swift; sourceTree = "<group>"; };
 		48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCoordinator.swift; sourceTree = "<group>"; };
 		48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		48FC87F22C72DAAE0001F7C8 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		48FC87F42C72EFF60001F7C8 /* LoginCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				48A073622C6EF87B00795C41 /* BankAppDemoTests.swift */,
+				48FC87F42C72EFF60001F7C8 /* LoginCoordinatorTests.swift */,
 				48541B592C72201F009280C2 /* FriendsViewModelTests.swift */,
 			);
 			path = BankAppDemoTests;
@@ -242,6 +247,7 @@
 			children = (
 				48CD5D002C6FAB5C00EC63EF /* LoginViewModel.swift */,
 				48CD5CFF2C6FAB5C00EC63EF /* FriendsViewModel.swift */,
+				48FC87F22C72DAAE0001F7C8 /* UserSession.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				4836BE5D2C6F407E00D0E84D /* NavigationCoordinator.swift in Sources */,
 				48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */,
 				48CD5D062C6FAB6700EC63EF /* LoginViewController.swift in Sources */,
+				48FC87F32C72DAAE0001F7C8 /* UserSession.swift in Sources */,
 				48CD5D162C705F9E00EC63EF /* PaymentViewController.swift in Sources */,
 				4836BE5B2C6F39E600D0E84D /* HomeCoordinator.swift in Sources */,
 				48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */,
@@ -482,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48FC87F52C72EFF60001F7C8 /* LoginCoordinatorTests.swift in Sources */,
 				48541B5A2C72201F009280C2 /* FriendsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

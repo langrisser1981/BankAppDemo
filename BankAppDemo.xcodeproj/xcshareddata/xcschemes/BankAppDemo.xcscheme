@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:BankAppDemo.xctestplan"
+            reference = "container:BankAppDemo/Resources/BankAppDemo.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
