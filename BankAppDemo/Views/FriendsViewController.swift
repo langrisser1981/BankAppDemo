@@ -111,6 +111,19 @@ class FriendsViewController: UIViewController {
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] friends in
 				self?.applySnapshot(with: friends)
+				// 輸出朋友清單到終端機
+				print("朋友清單：")
+				friends.forEach { print($0) }
+			}
+			.store(in: &cancellables)
+
+		// 收到的邀請清單
+		viewModel.$receivedInvitations
+			.receive(on: DispatchQueue.main)
+			.sink { invitations in
+				// 輸出收到的邀請清單到終端機
+				print("收到的邀請清單：")
+				invitations.forEach { print($0) }
 			}
 			.store(in: &cancellables)
 	}

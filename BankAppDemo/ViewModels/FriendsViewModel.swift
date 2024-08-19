@@ -12,6 +12,7 @@ class FriendsViewModel: ObservableObject {
 	@Published private(set) var user: User? // 儲存使用者資訊
 	@Published private(set) var combinedFriends: [Friend] = [] // 儲存所有好友
 	@Published private(set) var filteredFriends: [Friend] = [] // 儲存過濾後的好友
+	@Published private(set) var receivedInvitations: [Friend] = [] // 儲存收到的邀請清單
 
 	private var cancellables = Set<AnyCancellable>()
 
@@ -37,8 +38,14 @@ class FriendsViewModel: ObservableObject {
 				}
 			}, receiveValue: { [weak self] friends in
 				print("成功取得朋友列表：\(friends)")
-				self?.combinedFriends = friends
-				self?.filteredFriends = friends
+
+				// 根據 fid 排序
+				let sortedFriends = friends.sorted { $0.fid < $1.fid }
+
+				// 分類邀請和朋友
+				self?.receivedInvitations = sortedFriends.filter { $0.status == 0 }
+				self?.combinedFriends = sortedFriends.filter { $0.status != 0 }
+				self?.filteredFriends = self?.combinedFriends ?? []
 			})
 			.store(in: &cancellables)
 	}
@@ -51,5 +58,6 @@ class FriendsViewModel: ObservableObject {
 		} else {
 			filteredFriends = combinedFriends.filter { $0.name.lowercased().contains(searchText.lowercased()) }
 		}
+		// 注意：這裡不會過濾 receivedInvitations
 	}
 }
