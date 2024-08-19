@@ -18,7 +18,7 @@ BankAppDemo/
 │   ├── LoginCoordinator.swift
 │   └── HomeCoordinator.swift
 │   └── FriendsCoordinator.swift
-│   └── MockCoordinators.swift
+│   └── MockCoordinator.swift
 │   └── PaymentCoordinator.swift
 │
 ├── ViewModels/

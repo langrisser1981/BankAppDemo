@@ -40,7 +40,7 @@
 		48CD5D082C6FAB7300EC63EF /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D072C6FAB7300EC63EF /* Friend.swift */; };
 		48CD5D0B2C703A4500EC63EF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 48CD5D0A2C703A4500EC63EF /* SnapKit */; };
 		48CD5D0D2C70465300EC63EF /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */; };
-		48CD5D102C70543000EC63EF /* MockCoordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D0F2C70543000EC63EF /* MockCoordinators.swift */; };
+		48CD5D102C70543000EC63EF /* MockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D0F2C70543000EC63EF /* MockCoordinator.swift */; };
 		48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */; };
 		48CD5D142C705EFE00EC63EF /* PaymentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */; };
 		48CD5D162C705F9E00EC63EF /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */; };
@@ -104,7 +104,7 @@
 		48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48CD5D072C6FAB7300EC63EF /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
-		48CD5D0F2C70543000EC63EF /* MockCoordinators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoordinators.swift; sourceTree = "<group>"; };
+		48CD5D0F2C70543000EC63EF /* MockCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoordinator.swift; sourceTree = "<group>"; };
 		48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCoordinator.swift; sourceTree = "<group>"; };
 		48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCoordinator.swift; sourceTree = "<group>"; };
 		48CD5D152C705F9E00EC63EF /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 				48CD5CEF2C6FA7FA00EC63EF /* LoginCoordinator.swift */,
 				4836BE5A2C6F39E600D0E84D /* HomeCoordinator.swift */,
 				48CD5D112C7055D400EC63EF /* FriendsCoordinator.swift */,
-				48CD5D0F2C70543000EC63EF /* MockCoordinators.swift */,
+				48CD5D0F2C70543000EC63EF /* MockCoordinator.swift */,
 				48CD5D132C705EFE00EC63EF /* PaymentCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -461,7 +461,7 @@
 				48CD5D052C6FAB6700EC63EF /* FriendsViewController.swift in Sources */,
 				4836BE5F2C6F409F00D0E84D /* TabCoordinator.swift in Sources */,
 				48CD5D142C705EFE00EC63EF /* PaymentCoordinator.swift in Sources */,
-				48CD5D102C70543000EC63EF /* MockCoordinators.swift in Sources */,
+				48CD5D102C70543000EC63EF /* MockCoordinator.swift in Sources */,
 				48A073502C6EF87A00795C41 /* AppCoordinator.swift in Sources */,
 				48A073932C6F230000795C41 /* Color+Additions.swift in Sources */,
 				48CD5CF02C6FA7FA00EC63EF /* LoginCoordinator.swift in Sources */,
