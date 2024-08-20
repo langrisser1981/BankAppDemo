@@ -45,12 +45,18 @@ class FriendsViewController: UIViewController {
 
 	// 設定畫面元件與排版
 	private func setupUI() {
-		// 設定整個視圖控制器的背景為系統背景色
 		view.backgroundColor = .systemBackground
 
-		// 新增元件到畫面
-		view.addSubview(main)
-		main.snp.makeConstraints { make in
+		let mainStack = UIStackView.create(
+			arrangedSubviews: [toolbar, userInfo, contentContainer],
+			axis: .vertical,
+			spacing: 0,
+			alignment: .fill,
+			distribution: .fill
+		)
+
+		view.addSubview(mainStack)
+		mainStack.snp.makeConstraints { make in
 			make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
 			make.left.right.bottom.equalToSuperview()
 		}
@@ -60,20 +66,20 @@ class FriendsViewController: UIViewController {
 
 	// 設定 diffable data source
 	private func configureDataSource() {
-		dataSource = DataSource(tableView: tableView) { tableView, indexPath, friend -> UITableViewCell? in
-			if friend.status == 0 {
-				guard let cell = tableView.dequeueReusableCell(withIdentifier: InvitationCell.reuseIdentifier, for: indexPath) as? InvitationCell else {
-					fatalError("無法取得 InvitationCell")
-				}
-				cell.configure(with: friend)
-				return cell
-			} else {
-				guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseIdentifier, for: indexPath) as? FriendCell else {
-					fatalError("無法取得 FriendCell")
-				}
-				cell.configure(with: friend)
-				return cell
+		invitationsDataSource = InvitationsDataSource(tableView: invitationsTableView) { tableView, indexPath, friend in
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: InvitationCell.reuseIdentifier, for: indexPath) as? InvitationCell else {
+				fatalError("無法取得 InvitationCell")
 			}
+			cell.configure(with: friend)
+			return cell
+		}
+
+		friendsDataSource = FriendsDataSource(tableView: friendsTableView) { tableView, indexPath, friend in
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseIdentifier, for: indexPath) as? FriendCell else {
+				fatalError("無法取得 FriendCell")
+			}
+			cell.configure(with: friend)
+			return cell
 		}
 	}
 
@@ -89,32 +95,6 @@ class FriendsViewController: UIViewController {
 			}
 			.store(in: &cancellables)
 
-		// 朋友清單
-		viewModel.$filteredFriends
-			.receive(on: DispatchQueue.main)
-			.sink { [weak self] friends in
-				self?.applySnapshot(with: friends)
-				// 輸出朋友清單到終端機
-				print("朋友清單：")
-				friends.forEach { print($0) }
-				// 更新頁面標籤列的泡泡數字
-				self?.updateFriendsBubble(count: friends.count)
-				self?.updateChatBubble(count: 100)
-			}
-			.store(in: &cancellables)
-
-		// 收到的邀請清單
-		viewModel.$receivedInvitations
-			.receive(on: DispatchQueue.main)
-			.sink { [weak self] invitations in
-				self?.applySnapshot(with: invitations)
-				// 輸出收到的邀請清單到終端機
-				print("邀請清單：")
-				invitations.forEach { print($0) }
-				// self?.updateChatBubble(count: invitations.count)
-			}
-			.store(in: &cancellables)
-
 		// 監聽 combinedFriends 的變化，更新畫面顯示狀態
 		viewModel.$combinedFriends
 			.receive(on: DispatchQueue.main)
@@ -122,19 +102,35 @@ class FriendsViewController: UIViewController {
 				self?.updateContentVisibility(isEmpty: friends.isEmpty)
 			}
 			.store(in: &cancellables)
+
+		// 收到的邀請清單
+		viewModel.$receivedInvitations
+			.receive(on: DispatchQueue.main)
+			.sink { [weak self] invitations in
+				self?.applySnapshot(with: invitations, to: self?.invitationsDataSource)
+				self?.invitationsTableView.isHidden = invitations.isEmpty
+				self?.updateInvitationsTableViewHeight()
+			}
+			.store(in: &cancellables)
+
+		// 朋友清單
+		viewModel.$filteredFriends
+			.receive(on: DispatchQueue.main)
+			.sink { [weak self] friends in
+				self?.applySnapshot(with: friends, to: self?.friendsDataSource)
+				self?.updateFriendsBubble(count: friends.count)
+			}
+			.store(in: &cancellables)
 	}
 
 	// MARK: - 內部行為，如更新各種介面
 
 	// 當朋友清單資料更新時，套用新的快照到資料來源
-	private func applySnapshot(with friends: [Friend]) {
+	private func applySnapshot(with friends: [Friend], to dataSource: UITableViewDiffableDataSource<Section, Friend>?) {
 		var snapshot = Snapshot()
-		snapshot.appendSections([.invitations, .main])
-		let invitations = friends.filter { $0.status == 0 }
-		let normalFriends = friends.filter { $0.status != 0 }
-		snapshot.appendItems(invitations, toSection: .invitations)
-		snapshot.appendItems(normalFriends, toSection: .main)
-		dataSource.apply(snapshot, animatingDifferences: true) {
+		snapshot.appendSections([.main])
+		snapshot.appendItems(friends, toSection: .main)
+		dataSource?.apply(snapshot, animatingDifferences: true) {
 			self.refreshControl.endRefreshing()
 		}
 	}
@@ -178,6 +174,15 @@ class FriendsViewController: UIViewController {
 		}
 	}
 
+	// 更新 invitationsTableView 的高度
+	private func updateInvitationsTableViewHeight() {
+		invitationsTableView.layoutIfNeeded()
+		let height = invitationsTableView.contentSize.height
+		invitationsTableView.snp.updateConstraints { make in
+			make.height.equalTo(height)
+		}
+	}
+
 	// MARK: - 按鈕事件的處理
 
 	// 登出按鈕被按下
@@ -191,27 +196,6 @@ class FriendsViewController: UIViewController {
 	}
 
 	// MARK: - 建立控制元件的宣告
-
-	// 主視圖，包含使用者資訊和內容容器
-	private lazy var main: UIView = {
-		let container = UIView()
-		container.backgroundColor = .systemBackground
-
-		let stackView = UIStackView.create(
-			arrangedSubviews: [toolbar, userInfo, contentContainer],
-			axis: .vertical,
-			spacing: 0,
-			alignment: .fill,
-			distribution: .fill
-		)
-
-		container.addSubview(stackView)
-		stackView.snp.makeConstraints { make in
-			make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
-		}
-
-		return container
-	}()
 
 	// 工具列，包含提款、轉帳跟掃描，現在按下掃描會跳回初始頁，方便測試
 	private lazy var toolbar: UIView = {
@@ -232,6 +216,7 @@ class FriendsViewController: UIViewController {
 		)
 
 		container.addSubview(stackView)
+
 		stackView.snp.makeConstraints { make in
 			make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
 			make.height.equalTo(30)
@@ -287,6 +272,7 @@ class FriendsViewController: UIViewController {
 		)
 
 		container.addSubview(mainStack)
+
 		mainStack.snp.makeConstraints { make in
 			make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
 			make.height.equalTo(52)
@@ -305,14 +291,16 @@ class FriendsViewController: UIViewController {
 		container.backgroundColor = .systemBackground
 
 		container.addSubview(emptyStateImageView)
+		container.addSubview(friendsContent)
+
 		emptyStateImageView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
 		}
 
-		container.addSubview(friendsContent)
 		friendsContent.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
 		}
+
 		return container
 	}()
 
@@ -327,7 +315,7 @@ class FriendsViewController: UIViewController {
 	// 朋友內容視圖，包含頁面標籤列、搜尋列和朋友清單
 	private lazy var friendsContent: UIStackView = {
 		let stackView = UIStackView.create(
-			arrangedSubviews: [pageTabBar, searchBar, tableView],
+			arrangedSubviews: [invitationsTableView, pageTabBar, searchBar, friendsTableView],
 			axis: .vertical,
 			spacing: 20,
 			alignment: .fill,
@@ -361,16 +349,18 @@ class FriendsViewController: UIViewController {
 			distribution: .equalSpacing
 		)
 
+		// 新增底部的粉紅色線條
+		let bottomLine = UIView()
+		bottomLine.backgroundColor = .hotPink
+
+		container.addSubview(bottomLine)
 		container.addSubview(stackView)
+
 		stackView.snp.makeConstraints { make in
 			make.top.bottom.equalToSuperview().inset(8)
 			make.left.equalToSuperview().inset(16)
 		}
 
-		// 新增底部的粉紅色線條
-		let bottomLine = UIView()
-		bottomLine.backgroundColor = .hotPink
-		container.addSubview(bottomLine)
 		bottomLine.snp.makeConstraints { make in
 			make.bottom.equalToSuperview()
 			make.height.equalTo(2)
@@ -413,6 +403,7 @@ class FriendsViewController: UIViewController {
 		)
 
 		container.addSubview(stackView)
+
 		stackView.snp.makeConstraints { make in
 			make.top.left.bottom.equalToSuperview().inset(8)
 			make.right.equalToSuperview().inset(16)
@@ -432,26 +423,36 @@ class FriendsViewController: UIViewController {
 		return refreshControl
 	}()
 
+	// 邀請清單
+	private lazy var invitationsTableView: UITableView = {
+		let tableView = UITableView()
+		tableView.register(InvitationCell.self, forCellReuseIdentifier: InvitationCell.reuseIdentifier)
+		tableView.isScrollEnabled = false // 禁用滾動
+		tableView.rowHeight = UITableView.automaticDimension
+		tableView.estimatedRowHeight = 60 // 設置一個估計高度
+		return tableView
+	}()
+
 	// 朋友清單
-	private lazy var tableView: UITableView = {
+	private lazy var friendsTableView: UITableView = {
 		let tableView = UITableView()
 		tableView.register(FriendCell.self, forCellReuseIdentifier: FriendCell.reuseIdentifier)
-		tableView.register(InvitationCell.self, forCellReuseIdentifier: InvitationCell.reuseIdentifier)
 		tableView.addSubview(refreshControl)
 		return tableView
 	}()
 
 	// 定義朋友清單的區段
 	private enum Section {
-		case invitations
 		case main
 	}
 
 	// 定義 diffable data source 類型，支援顯示朋友的資料，包含是否優先顯示，個人圖像，名稱
-	private typealias DataSource = UITableViewDiffableDataSource<Section, Friend>
+	private typealias FriendsDataSource = UITableViewDiffableDataSource<Section, Friend>
+	private typealias InvitationsDataSource = UITableViewDiffableDataSource<Section, Friend>
 	private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Friend>
 	// 代表朋友清單的資料來源
-	private var dataSource: DataSource!
+	private var friendsDataSource: FriendsDataSource!
+	private var invitationsDataSource: InvitationsDataSource!
 
 	// MARK: - 幫助方法與元件
 
