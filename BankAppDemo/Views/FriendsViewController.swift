@@ -118,7 +118,10 @@ class FriendsViewController: UIViewController {
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] friends in
 				self?.applySnapshot(with: friends, to: self?.friendsDataSource)
-				self?.updateFriendsBubble(count: friends.count)
+				// 更新"好友"標籤的泡泡數字，只顯示status == 2的數量
+				let count = friends.filter { $0.status == 2 }.count
+				self?.updateFriendsBubble(count: count)
+				// 順便將"聊天"標籤的泡泡數字更新為99+
 				self?.updateChatBubble(count: 100)
 			}
 			.store(in: &cancellables)
