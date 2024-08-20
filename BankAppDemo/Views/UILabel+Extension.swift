@@ -24,6 +24,9 @@ extension UILabel {
 		}
 	}
     
+	// 新增：定義泡泡標籤的最小尺寸
+	private static let minBubbleSize: CGFloat = 20
+    
 	/// 建立一個帶有泡泡數字的標籤
 	/// - Parameters:
 	///   - text: 主標籤的文字
@@ -41,7 +44,7 @@ extension UILabel {
 		// 修改背景顏色為淺粉紅色
 		bubbleLabel.backgroundColor = .softPink
 		bubbleLabel.textColor = .white
-		bubbleLabel.layer.cornerRadius = 10
+		bubbleLabel.layer.cornerRadius = minBubbleSize / 2 // 設置圓角為最小尺寸的一半
 		bubbleLabel.layer.masksToBounds = true
 		// 移除外框
 		bubbleLabel.layer.borderWidth = 0
@@ -54,9 +57,9 @@ extension UILabel {
 		// 設定泡泡標籤的約束
 		bubbleLabel.snp.makeConstraints { make in
 			make.top.equalTo(label.snp.top).offset(-10)
-			make.right.equalTo(label.snp.right)
-			make.height.equalTo(20)
-			make.width.greaterThanOrEqualTo(20)
+			make.left.equalTo(label.snp.right).offset(-2) // 新增：設置左邊界約束
+			make.height.equalTo(minBubbleSize)
+			make.width.greaterThanOrEqualTo(minBubbleSize)
 		}
 		
 		// 設定文字內容的約束
@@ -79,6 +82,15 @@ extension UILabel {
 		if number > 0 {
 			bubbleLabel.text = number > 99 ? "99+" : "\(number)"
 			bubbleLabel.isHidden = false
+            
+			// 計算所需的寬度
+			let textWidth = bubbleLabel.intrinsicContentSize.width
+			let requiredWidth = max(textWidth + 10, UILabel.minBubbleSize)
+			
+			// 更新泡泡標籤的寬度約束
+			bubbleLabel.snp.updateConstraints { make in
+				make.width.greaterThanOrEqualTo(requiredWidth) // 確保有足夠的寬度
+			}
 		} else {
 			bubbleLabel.isHidden = true
 		}
