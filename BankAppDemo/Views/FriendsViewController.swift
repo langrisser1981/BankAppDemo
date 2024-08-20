@@ -429,7 +429,8 @@ class FriendsViewController: UIViewController {
 		tableView.register(InvitationCell.self, forCellReuseIdentifier: InvitationCell.reuseIdentifier)
 		tableView.isScrollEnabled = false // 禁用滾動
 		tableView.rowHeight = UITableView.automaticDimension
-		tableView.estimatedRowHeight = 60 // 設置一個估計高度
+		tableView.estimatedRowHeight = 80 // 設置一個估計高度
+		tableView.separatorStyle = .none // 移除分隔線
 		return tableView
 	}()
 

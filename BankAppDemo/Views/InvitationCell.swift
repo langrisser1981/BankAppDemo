@@ -14,6 +14,7 @@ class InvitationCell: UITableViewCell {
 	static let reuseIdentifier = "InvitationCell"
 
 	// 定義 cell 中的 UI 元件
+	private let containerView = UIView()
 	private let avatarImageView = UIImageView(image: UIImage(named: "imgFriendsFemaleDefault"))
 	private let nameLabel = UILabel()
 	private let invitationLabel = UILabel()
@@ -31,6 +32,15 @@ class InvitationCell: UITableViewCell {
 	}
 
 	private func setupUI() {
+		// 設定容器視圖
+		containerView.backgroundColor = .systemBackground
+		containerView.layer.cornerRadius = 12
+		containerView.layer.shadowColor = UIColor.black.cgColor
+		containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
+		containerView.layer.shadowRadius = 4
+		containerView.layer.shadowOpacity = 0.1
+		contentView.addSubview(containerView)
+
 		// 設定頭像
 		avatarImageView.contentMode = .scaleAspectFill
 		avatarImageView.clipsToBounds = true
@@ -68,18 +78,25 @@ class InvitationCell: UITableViewCell {
 			distribution: .fill
 		)
 
-		contentView.addSubview(mainStack)
+		containerView.addSubview(mainStack)
 
 		// 設定約束
-		mainStack.snp.makeConstraints { make in
+		containerView.snp.makeConstraints { make in
 			make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
 		}
+
+		mainStack.snp.makeConstraints { make in
+			make.edges.equalToSuperview().inset(UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12))
+		}
+
 		avatarImageView.snp.makeConstraints { make in
 			make.size.equalTo(CGSize(width: 40, height: 40))
 		}
+
 		agreeButton.snp.makeConstraints { make in
 			make.size.equalTo(CGSize(width: 24, height: 24))
 		}
+
 		deleteButton.snp.makeConstraints { make in
 			make.size.equalTo(CGSize(width: 24, height: 24))
 		}
