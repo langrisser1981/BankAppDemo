@@ -119,6 +119,7 @@ class FriendsViewController: UIViewController {
 			.sink { [weak self] friends in
 				self?.applySnapshot(with: friends, to: self?.friendsDataSource)
 				self?.updateFriendsBubble(count: friends.count)
+				self?.updateChatBubble(count: 100)
 			}
 			.store(in: &cancellables)
 	}
@@ -353,8 +354,8 @@ class FriendsViewController: UIViewController {
 		let bottomLine = UIView()
 		bottomLine.backgroundColor = .hotPink
 
-		container.addSubview(bottomLine)
 		container.addSubview(stackView)
+		container.addSubview(bottomLine)
 
 		stackView.snp.makeConstraints { make in
 			make.top.bottom.equalToSuperview().inset(8)
