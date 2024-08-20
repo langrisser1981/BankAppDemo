@@ -14,6 +14,7 @@ class FriendCell: UITableViewCell {
 	static let reuseIdentifier = "FriendCell"
 
 	// 定義 cell 中的 UI 元件
+	private let starContainerView = UIView()
 	private let starImageView = UIImageView(image: UIImage(systemName: "star.fill"))
 	private let avatarImageView = UIImageView(image: UIImage(named: "imgFriendsFemaleDefault"))
 	private let nameLabel = UILabel()
@@ -35,6 +36,9 @@ class FriendCell: UITableViewCell {
 		// 設定星圖示
 		starImageView.tintColor = .systemYellow
 
+		// 將星圖示添加到容器視圖中
+		starContainerView.addSubview(starImageView)
+
 		// 設定頭像圖片
 		avatarImageView.contentMode = .scaleAspectFill
 		avatarImageView.clipsToBounds = true
@@ -44,8 +48,8 @@ class FriendCell: UITableViewCell {
 		nameLabel.font = .systemFont(ofSize: 16)
 
 		// 設定轉帳按鈕
-		transferButton.setTitleColor(.red, for: .normal)
-		transferButton.layer.borderColor = UIColor.red.cgColor
+		transferButton.setTitleColor(.hotPink, for: .normal)
+		transferButton.layer.borderColor = UIColor.hotPink.cgColor
 		transferButton.layer.borderWidth = 1
 		transferButton.layer.cornerRadius = 4
 		transferButton.backgroundColor = .white // 設定背景為白色
@@ -62,9 +66,9 @@ class FriendCell: UITableViewCell {
 		moreButton.layer.cornerRadius = 4
 		moreButton.backgroundColor = .white // 設定背景為白色
 
-		// 建立水堆疊視圖來列所有件
+		// 建立水平堆疊視圖來排列所有元件
 		let stackView = UIStackView.create(
-			arrangedSubviews: [starImageView, avatarImageView, nameLabel, transferButton, inviteButton, moreButton],
+			arrangedSubviews: [starContainerView, avatarImageView, nameLabel, transferButton, inviteButton, moreButton],
 			axis: .horizontal,
 			spacing: 8,
 			alignment: .center,
@@ -77,7 +81,15 @@ class FriendCell: UITableViewCell {
 		stackView.snp.makeConstraints { make in
 			make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
 		}
+
+		// 設定星圖示容器的約束
+		starContainerView.snp.makeConstraints { make in
+			make.width.equalTo(20)
+			make.height.equalTo(stackView)
+		}
+		// 設定星圖示在容器中的約束
 		starImageView.snp.makeConstraints { make in
+			make.center.equalToSuperview()
 			make.size.equalTo(20)
 		}
 		avatarImageView.snp.makeConstraints { make in
