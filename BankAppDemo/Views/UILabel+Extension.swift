@@ -32,28 +32,41 @@ extension UILabel {
 	static func createWithBubble(text: String, bubbleNumber: Int) -> UILabel {
 		let label = UILabel()
 		label.text = text
-		label.textAlignment = .center
+		label.textAlignment = .left // 將文字對齊改為左對齊
 		label.font = UIFont.systemFont(ofSize: 16)
         
 		let bubbleLabel = UILabel()
 		bubbleLabel.textAlignment = .center
 		bubbleLabel.font = UIFont.systemFont(ofSize: 12)
-		bubbleLabel.backgroundColor = .red
+		// 修改背景顏色為淺粉紅色
+		bubbleLabel.backgroundColor = .softPink
 		bubbleLabel.textColor = .white
 		bubbleLabel.layer.cornerRadius = 10
 		bubbleLabel.layer.masksToBounds = true
+		// 移除外框
+		bubbleLabel.layer.borderWidth = 0
 		bubbleLabel.isHidden = bubbleNumber == 0
         
 		label.addSubview(bubbleLabel)
 		label.bubbleLabel = bubbleLabel
 		label.setBubbleNumber(bubbleNumber)
         
+		// 設定泡泡標籤的約束
 		bubbleLabel.snp.makeConstraints { make in
 			make.top.equalTo(label.snp.top).offset(-10)
-			make.right.equalTo(label.snp.right).offset(10)
+			make.right.equalTo(label.snp.right)
 			make.height.equalTo(20)
 			make.width.greaterThanOrEqualTo(20)
 		}
+		
+		// 設定文字內容的約束
+		label.snp.makeConstraints { make in
+			make.height.greaterThanOrEqualTo(20)
+		}
+		
+		// 在佈局變更後更新泡泡位置
+		label.setNeedsLayout()
+		label.layoutIfNeeded()
         
 		return label
 	}
@@ -69,5 +82,9 @@ extension UILabel {
 		} else {
 			bubbleLabel.isHidden = true
 		}
+		
+		// 強制更新佈局
+		setNeedsLayout()
+		layoutIfNeeded()
 	}
 }

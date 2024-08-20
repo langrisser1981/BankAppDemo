@@ -57,6 +57,8 @@ BankAppDemo/
 ├── Views/
 │   ├── LoginViewController.swift
 │   └── FriendsListViewController.swift
+│   └── FriendCell.swift
+│   └── InvitationCell.swift
 │   └── PaymentViewController.swift
 │   └── UIStackView+Extension.swift
 │   └── UIButton+Extension.swift

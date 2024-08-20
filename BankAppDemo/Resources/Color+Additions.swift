@@ -7,31 +7,36 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension Color {
 	static let appleGreen = Color(red: 121.0 / 255.0, green: 196.0 / 255.0, blue: 27.0 / 255.0)
-
 	static let lightGrey = Color(white: 153.0 / 255.0)
-
 	static let steel = Color(red: 142.0 / 255.0, green: 142.0 / 255.0, blue: 147.0 / 255.0)
-
 	static let whiteThree = Color(white: 228.0 / 255.0)
-
 	static let appleGreen40 = Color(red: 121.0 / 255.0, green: 196.0 / 255.0, blue: 27.0 / 255.0, opacity: 0.4)
-
 	static let greyishBrown = Color(white: 71.0 / 255.0)
-
 	static let pinkishGrey = Color(white: 201.0 / 255.0)
-
 	static let booger = Color(red: 166.0 / 255.0, green: 204.0 / 255.0, blue: 66.0 / 255.0)
-
 	static let white = Color(white: 245.0 / 255.0)
-
 	static let whiteTwo = Color(white: 252.0 / 255.0)
-
 	static let frogGreen = Color(red: 86.0 / 255.0, green: 179.0 / 255.0, blue: 11.0 / 255.0)
-
 	static let softPink = Color(red: 249.0 / 255.0, green: 178.0 / 255.0, blue: 220.0 / 255.0)
-
 	static let hotPink = Color(red: 236.0 / 255.0, green: 0.0, blue: 140.0 / 255.0)
+}
+
+extension UIColor {
+	static let appleGreen = UIColor(red: 121.0 / 255.0, green: 196.0 / 255.0, blue: 27.0 / 255.0, alpha: 1.0)
+	static let lightGrey = UIColor(white: 153.0 / 255.0, alpha: 1.0)
+	static let steel = UIColor(red: 142.0 / 255.0, green: 142.0 / 255.0, blue: 147.0 / 255.0, alpha: 1.0)
+	static let whiteThree = UIColor(white: 228.0 / 255.0, alpha: 1.0)
+	static let appleGreen40 = UIColor(red: 121.0 / 255.0, green: 196.0 / 255.0, blue: 27.0 / 255.0, alpha: 0.4)
+	static let greyishBrown = UIColor(white: 71.0 / 255.0, alpha: 1.0)
+	static let pinkishGrey = UIColor(white: 201.0 / 255.0, alpha: 1.0)
+	static let booger = UIColor(red: 166.0 / 255.0, green: 204.0 / 255.0, blue: 66.0 / 255.0, alpha: 1.0)
+	static let white = UIColor(white: 245.0 / 255.0, alpha: 1.0)
+	static let whiteTwo = UIColor(white: 252.0 / 255.0, alpha: 1.0)
+	static let frogGreen = UIColor(red: 86.0 / 255.0, green: 179.0 / 255.0, blue: 11.0 / 255.0, alpha: 1.0)
+	static let softPink = UIColor(red: 249.0 / 255.0, green: 178.0 / 255.0, blue: 220.0 / 255.0, alpha: 1.0)
+	static let hotPink = UIColor(red: 236.0 / 255.0, green: 0.0, blue: 140.0 / 255.0, alpha: 1.0)
 }

@@ -47,6 +47,8 @@
 		48D07BB62C7388D800748F85 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D07BB52C7388D800748F85 /* UILabel+Extension.swift */; };
 		48FC87F32C72DAAE0001F7C8 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC87F22C72DAAE0001F7C8 /* UserSession.swift */; };
 		48FC87F52C72EFF60001F7C8 /* LoginCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC87F42C72EFF60001F7C8 /* LoginCoordinatorTests.swift */; };
+		48FC87F72C744FC00001F7C8 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC87F62C744FC00001F7C8 /* FriendCell.swift */; };
+		48FC87F92C748FEE0001F7C8 /* InvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FC87F82C748FEE0001F7C8 /* InvitationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		48D07BB52C7388D800748F85 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		48FC87F22C72DAAE0001F7C8 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		48FC87F42C72EFF60001F7C8 /* LoginCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatorTests.swift; sourceTree = "<group>"; };
+		48FC87F62C744FC00001F7C8 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		48FC87F82C748FEE0001F7C8 /* InvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +241,8 @@
 			children = (
 				48CD5D042C6FAB6700EC63EF /* LoginViewController.swift */,
 				48CD5D032C6FAB6700EC63EF /* FriendsViewController.swift */,
+				48FC87F62C744FC00001F7C8 /* FriendCell.swift */,
+				48FC87F82C748FEE0001F7C8 /* InvitationCell.swift */,
 				48CD5D0C2C70465300EC63EF /* UIStackView+Extension.swift */,
 				48541B572C720F33009280C2 /* UIButton+Extension.swift */,
 				48D07BB52C7388D800748F85 /* UILabel+Extension.swift */,
@@ -461,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48FC87F92C748FEE0001F7C8 /* InvitationCell.swift in Sources */,
 				48CD5D052C6FAB6700EC63EF /* FriendsViewController.swift in Sources */,
 				4836BE5F2C6F409F00D0E84D /* TabCoordinator.swift in Sources */,
 				48CD5D142C705EFE00EC63EF /* PaymentCoordinator.swift in Sources */,
@@ -472,6 +479,7 @@
 				48CD5D0D2C70465300EC63EF /* UIStackView+Extension.swift in Sources */,
 				48A0734C2C6EF87A00795C41 /* AppDelegate.swift in Sources */,
 				48CD5D012C6FAB5C00EC63EF /* FriendsViewModel.swift in Sources */,
+				48FC87F72C744FC00001F7C8 /* FriendCell.swift in Sources */,
 				48CD5D022C6FAB5C00EC63EF /* LoginViewModel.swift in Sources */,
 				4836BE5D2C6F407E00D0E84D /* NavigationCoordinator.swift in Sources */,
 				48CD5D122C7055D400EC63EF /* FriendsCoordinator.swift in Sources */,
