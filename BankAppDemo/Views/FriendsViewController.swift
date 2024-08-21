@@ -36,7 +36,6 @@ class FriendsViewController: UIViewController {
 
 	private var tapGesture: UITapGestureRecognizer!
 	private var isSearchBarFocused = false
-	private var originalSearchBarFrame: CGRect?
 	private var keyboardFrame: CGRect?
 
 	override func viewDidLoad() {
@@ -163,8 +162,14 @@ class FriendsViewController: UIViewController {
 
 	// 更新內容可見性，根據朋友表是否為空來切換顯示
 	private func updateContentVisibility(isEmpty: Bool) {
-		emptyStateImageView.isHidden = !isEmpty
+		emptyStateView.isHidden = !isEmpty
 		friendsContent.isHidden = isEmpty
+		pageTabBar.isHidden = false
+
+		// 根據是否有朋友來控制特定元素的顯示
+		invitationsTableView.isHidden = isEmpty || viewModel.receivedInvitations.isEmpty
+		searchBar.isHidden = isEmpty
+		friendsTableView.isHidden = isEmpty
 	}
 
 	// 更新"好友"標籤的泡泡數字
@@ -194,6 +199,24 @@ class FriendsViewController: UIViewController {
 		}
 	}
 
+	private func moveSearchBarToTop() {
+		guard isSearchBarFocused else { return }
+
+		let offsetY = searchBar.convert(CGPoint.zero, to: nil).y - view.safeAreaInsets.top
+
+		UIView.animate(withDuration: 0.3) {
+			self.view.frame.origin.y = -offsetY
+		}
+	}
+
+	private func restoreSearchBarPosition() {
+		guard !isSearchBarFocused else { return }
+
+		UIView.animate(withDuration: 0.3) {
+			self.view.frame.origin.y = 0
+		}
+	}
+
 	// MARK: - 按鈕事件的處理
 
 	// 登出按鈕被按下
@@ -204,6 +227,32 @@ class FriendsViewController: UIViewController {
 	// 觸發下拉列表更新資料
 	@objc private func refreshFriendsList() {
 		delegate?.didRequestRefresh(self)
+	}
+
+	// 處理觸碰事件
+	@objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+		let location = gesture.location(in: view)
+
+		// 檢查觸碰位置是否在鍵盤區域外
+		if let keyboardFrame = keyboardFrame,
+		   !keyboardFrame.contains(location)
+		{
+			view.endEditing(true) // 收回鍵盤
+		}
+	}
+
+	// 鍵盤升起的時候要讓畫面向上移動，讓搜尋列貼齊螢幕上緣，確保內容不會被鍵盤遮住
+	@objc private func keyboardWillShow(notification: NSNotification) {
+		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+			self.keyboardFrame = keyboardFrame.cgRectValue
+			tapGesture.isEnabled = true
+		}
+	}
+
+	// 鍵盤收回的時候要讓元件回復到原本的高度位置
+	@objc private func keyboardWillHide(notification: NSNotification) {
+		keyboardFrame = nil
+		tapGesture.isEnabled = false
 	}
 
 	// MARK: - 建立控制元件的宣告
@@ -301,10 +350,10 @@ class FriendsViewController: UIViewController {
 		let container = UIView()
 		container.backgroundColor = .systemBackground
 
-		container.addSubview(emptyStateImageView)
+		container.addSubview(emptyStateView)
 		container.addSubview(friendsContent)
 
-		emptyStateImageView.snp.makeConstraints { make in
+		emptyStateView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
 		}
 
@@ -315,12 +364,84 @@ class FriendsViewController: UIViewController {
 		return container
 	}()
 
-	// 空狀態圖片視圖
-	private lazy var emptyStateImageView: UIImageView = {
+	// 空狀態視圖
+	private lazy var emptyStateView: UIView = {
+		let view = UIView()
+
+		let emptyPageTabBar = createPageTabBar()
 		let imageView = UIImageView(image: UIImage(named: "imgFriendsEmpty"))
 		imageView.contentMode = .scaleAspectFit
-		imageView.isHidden = true
-		return imageView
+
+		let titleLabel = UILabel()
+		titleLabel.text = "就從加好友開始吧：）"
+		titleLabel.font = .systemFont(ofSize: 28, weight: .medium)
+		titleLabel.textAlignment = .center
+
+		let descriptionLabel = UILabel()
+		descriptionLabel.text = "與好友們一起用 KOKO 聊起來！\n還能互相收付款、發紅包喔：）"
+		descriptionLabel.font = .systemFont(ofSize: 14)
+		descriptionLabel.textAlignment = .center
+		descriptionLabel.numberOfLines = 0
+		descriptionLabel.textColor = .lightGray
+
+		let addFriendButton = GradientButton(type: .system)
+		addFriendButton.setTitle("加好友", for: .normal)
+		addFriendButton.setTitleColor(.white, for: .normal)
+		addFriendButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+		addFriendButton.layer.cornerRadius = 20
+		addFriendButton.clipsToBounds = true
+
+		let addFriendIcon = UIImageView(image: UIImage(named: "icAddFriendWhite"))
+		addFriendButton.addSubview(addFriendIcon)
+		addFriendIcon.snp.makeConstraints { make in
+			make.centerY.equalToSuperview()
+			make.right.equalToSuperview().inset(16)
+			make.width.height.equalTo(24)
+		}
+
+		let helpLabel = UILabel()
+		let fullText = "幫助好友更快找到你？設定 KOKO ID"
+		let attributedString = NSMutableAttributedString(string: fullText)
+		let range = (fullText as NSString).range(of: "設定 KOKO ID")
+		attributedString.addAttribute(.foregroundColor, value: UIColor.hotPink, range: range)
+		attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+		helpLabel.attributedText = attributedString
+		helpLabel.font = .systemFont(ofSize: 13)
+		helpLabel.textAlignment = .center
+
+		let stackView = UIStackView(arrangedSubviews: [
+			emptyPageTabBar, imageView, titleLabel, descriptionLabel, addFriendButton, helpLabel
+		])
+		stackView.axis = .vertical
+		stackView.spacing = 16
+		stackView.alignment = .center
+		view.addSubview(stackView)
+
+		stackView.snp.makeConstraints { make in
+			make.top.equalToSuperview()
+			make.centerX.equalToSuperview()
+			make.width.equalToSuperview()
+		}
+
+		emptyPageTabBar.snp.makeConstraints { make in
+			make.width.equalToSuperview()
+		}
+
+		imageView.snp.makeConstraints { make in
+			make.width.equalTo(245)
+			make.height.equalTo(172)
+		}
+
+		titleLabel.snp.makeConstraints { make in
+			make.height.equalTo(29)
+		}
+
+		addFriendButton.snp.makeConstraints { make in
+			make.width.equalTo(200)
+			make.height.equalTo(40)
+		}
+
+		return view
 	}()
 
 	// 朋友內容視圖，包含頁面標籤列、搜尋列和朋友清單
@@ -338,48 +459,7 @@ class FriendsViewController: UIViewController {
 
 	// 頁面標籤列，顯示"好友"和"聊天"兩個選項
 	private lazy var pageTabBar: UIView = {
-		let container = UIView()
-		container.backgroundColor = .systemBackground
-
-		// 建立"好友"標籤
-		let friendsLabel = UILabel.createWithBubble(text: "好友", bubbleNumber: 0)
-		friendsLabel.textAlignment = .center
-		friendsLabel.font = .systemFont(ofSize: 16, weight: .medium)
-
-		// 建立"聊天"標籤
-		let chatLabel = UILabel.createWithBubble(text: "聊天", bubbleNumber: 0)
-		chatLabel.textAlignment = .center
-		chatLabel.font = .systemFont(ofSize: 16, weight: .medium)
-
-		// 建立水平堆疊視圖
-		let stackView = UIStackView.create(
-			arrangedSubviews: [friendsLabel, chatLabel],
-			axis: .horizontal,
-			spacing: 20,
-			alignment: .center,
-			distribution: .equalSpacing
-		)
-
-		// 新增底部的粉紅色線條
-		let bottomLine = UIView()
-		bottomLine.backgroundColor = .hotPink
-
-		container.addSubview(stackView)
-		container.addSubview(bottomLine)
-
-		stackView.snp.makeConstraints { make in
-			make.top.bottom.equalToSuperview().inset(8)
-			make.left.equalToSuperview().inset(16)
-		}
-
-		bottomLine.snp.makeConstraints { make in
-			make.bottom.equalToSuperview()
-			make.height.equalTo(2)
-			make.width.equalTo(friendsLabel.snp.width)
-			make.left.equalTo(friendsLabel)
-		}
-
-		return container
+		createPageTabBar()
 	}()
 
 	// 搜尋列，使用者可以輸入姓名，會即時更新朋友列表的顯示
@@ -480,6 +560,52 @@ class FriendsViewController: UIViewController {
 		return button
 	}
 
+	// 建立頁面標籤列的方法
+	private func createPageTabBar() -> UIView {
+		let container = UIView()
+		container.backgroundColor = .systemBackground
+
+		// 建立"好友"標籤
+		let friendsLabel = UILabel.createWithBubble(text: "好友", bubbleNumber: 0)
+		friendsLabel.textAlignment = .center
+		friendsLabel.font = .systemFont(ofSize: 16, weight: .medium)
+
+		// 建立"聊天"標籤
+		let chatLabel = UILabel.createWithBubble(text: "聊天", bubbleNumber: 0)
+		chatLabel.textAlignment = .center
+		chatLabel.font = .systemFont(ofSize: 16, weight: .medium)
+
+		// 建立水平堆疊視圖
+		let stackView = UIStackView.create(
+			arrangedSubviews: [friendsLabel, chatLabel],
+			axis: .horizontal,
+			spacing: 20,
+			alignment: .center,
+			distribution: .equalSpacing
+		)
+
+		// 新增底部的粉紅色線條
+		let bottomLine = UIView()
+		bottomLine.backgroundColor = .hotPink
+
+		container.addSubview(stackView)
+		container.addSubview(bottomLine)
+
+		stackView.snp.makeConstraints { make in
+			make.top.bottom.equalToSuperview().inset(8)
+			make.left.equalToSuperview().inset(16)
+		}
+
+		bottomLine.snp.makeConstraints { make in
+			make.bottom.equalToSuperview()
+			make.height.equalTo(2)
+			make.width.equalTo(friendsLabel.snp.width)
+			make.left.equalTo(friendsLabel)
+		}
+
+		return container
+	}
+
 	// 訂閱觸碰事件，當鍵盤升起時，只要點鍵盤之外的區域，鍵盤會自動收回
 	private func setupTapGesture() {
 		tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -492,50 +618,6 @@ class FriendsViewController: UIViewController {
 	private func setupKeyboardObservers() {
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-	}
-
-	// 處理觸碰事件
-	@objc private func handleTap(_ gesture: UITapGestureRecognizer) {
-		let location = gesture.location(in: view)
-
-		// 檢查觸碰位置是否在鍵盤區域外
-		if let keyboardFrame = keyboardFrame,
-		   !keyboardFrame.contains(location)
-		{
-			view.endEditing(true) // 收回鍵盤
-		}
-	}
-
-	// 鍵盤升起的時候要讓畫面向上移動，讓搜尋列貼齊螢幕上緣，確保內容不會被鍵盤遮住
-	@objc private func keyboardWillShow(notification: NSNotification) {
-		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-			self.keyboardFrame = keyboardFrame.cgRectValue
-			tapGesture.isEnabled = true
-		}
-	}
-
-	// 鍵盤收回的時候要讓元件回復到原本的高度位置
-	@objc private func keyboardWillHide(notification: NSNotification) {
-		keyboardFrame = nil
-		tapGesture.isEnabled = false
-	}
-
-	private func moveSearchBarToTop() {
-		guard isSearchBarFocused else { return }
-
-		let offsetY = searchBar.convert(CGPoint.zero, to: nil).y - view.safeAreaInsets.top
-
-		UIView.animate(withDuration: 0.3) {
-			self.view.frame.origin.y = -offsetY
-		}
-	}
-
-	private func restoreSearchBarPosition() {
-		guard !isSearchBarFocused else { return }
-
-		UIView.animate(withDuration: 0.3) {
-			self.view.frame.origin.y = 0
-		}
 	}
 }
 
@@ -561,4 +643,25 @@ extension FriendsViewController: UISearchBarDelegate {
 		isSearchBarFocused = false
 		restoreSearchBarPosition()
 	}
+}
+
+// MARK: - GradientButton
+
+// 漸層按鈕類別
+class GradientButton: UIButton {
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		gradientLayer.frame = bounds
+	}
+
+	private lazy var gradientLayer: CAGradientLayer = {
+		let l = CAGradientLayer()
+		l.frame = self.bounds
+		l.colors = [UIColor(red: 73 / 255, green: 190 / 255, blue: 43 / 255, alpha: 1).cgColor,
+		            UIColor(red: 120 / 255, green: 220 / 255, blue: 57 / 255, alpha: 1).cgColor]
+		l.startPoint = CGPoint(x: 0, y: 0.5)
+		l.endPoint = CGPoint(x: 1, y: 0.5)
+		layer.insertSublayer(l, at: 0)
+		return l
+	}()
 }
