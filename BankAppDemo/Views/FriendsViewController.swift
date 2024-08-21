@@ -34,11 +34,18 @@ class FriendsViewController: UIViewController {
 
 	private var cancellables = Set<AnyCancellable>()
 
+	private var tapGesture: UITapGestureRecognizer!
+	private var isSearchBarFocused = false
+	private var originalSearchBarFrame: CGRect?
+	private var keyboardFrame: CGRect?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
 		configureDataSource()
 		bindViewModel()
+		setupTapGesture()
+		setupKeyboardObservers()
 	}
 
 	// MARK: - 排版
@@ -472,6 +479,64 @@ class FriendsViewController: UIViewController {
 		}
 		return button
 	}
+
+	// 訂閱觸碰事件，當鍵盤升起時，只要點鍵盤之外的區域，鍵盤會自動收回
+	private func setupTapGesture() {
+		tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+		tapGesture.cancelsTouchesInView = false // 確保其他觸碰事件(像是手指按按鈕)仍然能夠正常工作
+		view.addGestureRecognizer(tapGesture)
+		tapGesture.isEnabled = false // 一開始不用偵測手勢，要等到鍵盤升起才開始偵測
+	}
+
+	// 訂閱鍵盤事件，處理鍵盤升起與收回的行為
+	private func setupKeyboardObservers() {
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+	}
+
+	// 處理觸碰事件
+	@objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+		let location = gesture.location(in: view)
+
+		// 檢查觸碰位置是否在鍵盤區域外
+		if let keyboardFrame = keyboardFrame,
+		   !keyboardFrame.contains(location)
+		{
+			view.endEditing(true) // 收回鍵盤
+		}
+	}
+
+	// 鍵盤升起的時候要讓畫面向上移動，讓搜尋列貼齊螢幕上緣，確保內容不會被鍵盤遮住
+	@objc private func keyboardWillShow(notification: NSNotification) {
+		if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+			self.keyboardFrame = keyboardFrame.cgRectValue
+			tapGesture.isEnabled = true
+		}
+	}
+
+	// 鍵盤收回的時候要讓元件回復到原本的高度位置
+	@objc private func keyboardWillHide(notification: NSNotification) {
+		keyboardFrame = nil
+		tapGesture.isEnabled = false
+	}
+
+	private func moveSearchBarToTop() {
+		guard isSearchBarFocused else { return }
+
+		let offsetY = searchBar.convert(CGPoint.zero, to: nil).y - view.safeAreaInsets.top
+
+		UIView.animate(withDuration: 0.3) {
+			self.view.frame.origin.y = -offsetY
+		}
+	}
+
+	private func restoreSearchBarPosition() {
+		guard !isSearchBarFocused else { return }
+
+		UIView.animate(withDuration: 0.3) {
+			self.view.frame.origin.y = 0
+		}
+	}
 }
 
 // MARK: UISearchBarDelegate
@@ -480,5 +545,20 @@ extension FriendsViewController: UISearchBarDelegate {
 	// 搜尋列的委派方法，用來根據姓名過濾朋友列表
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		viewModel.filterFriends(with: searchText)
+	}
+
+	// 按下 return 鍵盤應該要收起
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		searchBar.resignFirstResponder() // 收回鍵盤
+	}
+
+	func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+		isSearchBarFocused = true
+		moveSearchBarToTop()
+	}
+
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+		isSearchBarFocused = false
+		restoreSearchBarPosition()
 	}
 }

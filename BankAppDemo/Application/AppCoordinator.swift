@@ -14,6 +14,7 @@ class AppCoordinator: Coordinator {
 	private var homeCoordinator: HomeCoordinator?
 
 	override func start() {
+		view.backgroundColor = .systemBackground
 		// 應用程式啟動時顯示登入畫面
 		showMainScreen()
 	}
