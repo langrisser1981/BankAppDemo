@@ -5,6 +5,7 @@
 //  Created by 程信傑 on 2024/8/19.
 //
 
+import ObjectiveC
 import SnapKit
 import UIKit
 
@@ -12,6 +13,7 @@ extension UILabel {
 	// 用於儲存泡泡標籤的關聯物件鍵值
 	private enum AssociatedKeys {
 		static let bubbleLabelKey = UnsafeRawPointer(bitPattern: "bubbleLabelKey".hashValue)!
+		static let bubbleNumberKey = UnsafeRawPointer(bitPattern: "bubbleNumberKey".hashValue)!
 	}
 
 	// 泡泡標籤的私有屬性
@@ -22,6 +24,21 @@ extension UILabel {
 		set {
 			objc_setAssociatedObject(self, AssociatedKeys.bubbleLabelKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		}
+	}
+
+	// 儲存實際數字值的屬性
+	private var actualBubbleNumber: Int {
+		get {
+			objc_getAssociatedObject(self, AssociatedKeys.bubbleNumberKey) as? Int ?? 0
+		}
+		set {
+			objc_setAssociatedObject(self, AssociatedKeys.bubbleNumberKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+		}
+	}
+
+	// 公開的泡泡數字屬性
+	public var bubbleNumber: Int {
+		actualBubbleNumber
 	}
 
 	// 新增：定義泡泡標籤的最小尺寸
@@ -78,6 +95,8 @@ extension UILabel {
 	/// - Parameter number: 要顯示的數字
 	func setBubbleNumber(_ number: Int) {
 		guard let bubbleLabel = bubbleLabel else { return }
+
+		actualBubbleNumber = number
 
 		if number > 0 {
 			bubbleLabel.text = number > 99 ? "99+" : "\(number)"

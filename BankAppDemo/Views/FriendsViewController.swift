@@ -682,3 +682,36 @@ class GradientButton: UIButton {
 		return l
 	}()
 }
+
+// 用於測試的公開方法
+extension FriendsViewController {
+	enum ViewType {
+		case emptyState, invitationsTable, searchBar, friendsTable
+	}
+
+	func isViewHidden(_ viewType: ViewType) -> Bool {
+		switch viewType {
+		case .emptyState:
+			return emptyStateView.isHidden
+		case .invitationsTable:
+			return invitationsTableView.isHidden
+		case .searchBar:
+			return searchBar.isHidden
+		case .friendsTable:
+			return friendsTableView.isHidden
+		}
+	}
+
+	func getFriendsBubbleCount() -> Int {
+		viewModel.filteredFriends.filter { $0.status == 2 }.count
+	}
+
+	func getFriendsBubbleNumber() -> Int? {
+		if let stackView = pageTabBar.subviews.first as? UIStackView,
+		   let friendsLabel = stackView.arrangedSubviews.first as? UILabel
+		{
+			return friendsLabel.bubbleNumber
+		}
+		return nil
+	}
+}
