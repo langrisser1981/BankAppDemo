@@ -6,7 +6,7 @@
 * 第三方函式庫(使用SPM管理)
   * SnapKit
 
-編譯時會使用到 swiftlint & swiftformat，如果系統沒有安裝，編譯過程會出現報警黃自，但不影響輸出<br>
+編譯時會使用到 swiftlint & swiftformat，如果系統沒有安裝，編譯過程會出現報警黃字，但不影響輸出<br>
 如果出現找不到第三方函式庫的錯誤，請點 File -> Packages -> Reset Package Caches，會重新下載
 
 ## 操作流程
